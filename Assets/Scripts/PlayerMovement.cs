@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D myRigidbody;
     private Collider2D myCollider;
-
-    public float movementForce;
+    private Vector2 _velocity;
+    private bool _jumpInput;
+    private int _jumpsRemaining;
+    private float distToGround;
 
     private void Awake()
     {
@@ -22,26 +24,55 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        distToGround = myCollider.bounds.extents.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //myRigidbody.angularDrag = movementParams.angularDrag;
+        myRigidbody.angularDrag = movementParams.angularDrag;
+        myRigidbody.gravityScale = movementParams.gravityScale;
+        myRigidbody.mass = movementParams.mass;
+        myRigidbody.drag = movementParams.linearDrag;
+
+        bool jumpingAllowed = movementParams.canJump;
+        Vector2 moveInput = new Vector2(0, 0);
+
+        // Jumping
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (jumpingAllowed && _jumpsRemaining > 0)
+            {
+                print("Jumping");
+                _jumpInput = true;
+            }
+            else
+            {
+                Debug.Log("Jump disabled.");
+            }
+        }
+
+        if (_jumpInput)
+        {
+            moveInput.y = movementParams.jumpingForce;
+            _jumpsRemaining = _jumpsRemaining - 1;
+        }
+
+        // Horizontal Movement
+        float horizontalAxis = Input.GetAxis("Horizontal");
+        horizontalAxis = horizontalAxis * movementParams.movementForce * Time.deltaTime;
+        moveInput.x = horizontalAxis;
+        _velocity = moveInput;
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            Vector2 force = new Vector2(movementForce, 0);
-            myRigidbody.AddForce(force);
-        }
+        myRigidbody.AddForce(_velocity);
+        _jumpInput = false;
+    }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            Vector2 force = new Vector2(-movementForce, 0);
-            myRigidbody.AddForce(force);
-        }
+    public void OnCollisionWithGround()
+    {
+        _jumpsRemaining = 1;
     }
 }
