@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687777104812428699, guid: 4038fb5ea14542b48b3d66aaba41bbaf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6581593486131554259, guid: 4038fb5ea14542b48b3d66aaba41bbaf, type: 3}
       propertyPath: m_LinearDrag
@@ -445,7 +445,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1251935451084056064, guid: 66a075fbf419fe947b28c142081f54c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574784158260920069, guid: 66a075fbf419fe947b28c142081f54c0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574784158260920069, guid: 66a075fbf419fe947b28c142081f54c0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574784158260920069, guid: 66a075fbf419fe947b28c142081f54c0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 789a5bea13f19054aa4c03e0fe4e00f5, type: 3}
+    - target: {fileID: 4574784158260920069, guid: 66a075fbf419fe947b28c142081f54c0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5433866319761083648, guid: 66a075fbf419fe947b28c142081f54c0, type: 3}
       propertyPath: m_RootOrder
@@ -510,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc46d480c11eef4a91866af05bb93f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  preText: 'Futter:'
   text: {fileID: 865248673}
 --- !u!114 &865248673 stripped
 MonoBehaviour:
@@ -947,7 +964,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 375272042476587786, guid: cee0769859aec4b4497cbdebb8e7d52c, type: 3}
       propertyPath: orthographic size
-      value: 15
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375272043649883935, guid: cee0769859aec4b4497cbdebb8e7d52c, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee0769859aec4b4497cbdebb8e7d52c, type: 3}
@@ -1006,6 +1027,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3549349282908885735, guid: c1e3c2de5e6fa8e4da39077d2ebc2e0d, type: 3}
+      propertyPath: foodTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1e3c2de5e6fa8e4da39077d2ebc2e0d, type: 3}
 --- !u!1001 &8975832167792370475
@@ -1015,6 +1040,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2874318727020567347, guid: ca77c96a523195543bcee58abe86f38c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8975832167174118629, guid: ca77c96a523195543bcee58abe86f38c, type: 3}
       propertyPath: m_Name
       value: GameplayUI

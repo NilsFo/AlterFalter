@@ -75,6 +75,7 @@ public class GameState : MonoBehaviour
         Debug.Log("New Evolve state: " + playerState);
     }
 
+    [ContextMenu("Add 1 food")]
     public void AddFood()
     {
         Food = Food + 1;
