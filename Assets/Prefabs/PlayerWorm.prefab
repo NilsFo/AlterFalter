@@ -13,35 +13,43 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0feacc2f14e724243bbb1d66d6bf56d4, type: 2}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.x
-      value: 5.1751995
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.y
-      value: 5.1751995
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Offset.x
-      value: -0.023144722
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300591787134659019, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Name
       value: PlayerWorm
       objectReference: {fileID: 0}
+    - target: {fileID: 2650053265627916097, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
+      propertyPath: m_Size.x
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.x
-      value: 5.3333335
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.y
-      value: 5.3333335
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: da1cbe77bd5fce94b98fc6feffb4889a, type: 3}
+      objectReference: {fileID: 21300000, guid: 54604565959463b4a85c63c6395a83bf, type: 3}
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633790476422868231, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5204926824835400395, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_RootOrder
@@ -106,3 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a477f4324e66244a137b4b4b8e599a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextEvolvePrefab: {fileID: 0}
+  onEvolve:
+    m_PersistentCalls:
+      m_Calls: []

@@ -13,23 +13,27 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 05c4a8a8e787b01469d0748073fbaa61, type: 2}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.x
-      value: 3.8096807
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.y
-      value: 3.8096807
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Offset.x
-      value: 0.08568251
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 600229177951191940, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Offset.y
-      value: -0.5010516
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300591787134659019, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Name
       value: PlayerButterfly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650053265627916097, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.x
@@ -49,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4633790476422868231, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5204926824835400395, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_RootOrder
