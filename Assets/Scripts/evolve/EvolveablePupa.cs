@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
+public class EvolveablePupa : MonoBehaviour, IEvolveable
 {
     private GameState _gameState;
     public GameObject nextEvolvePrefab;
@@ -18,10 +17,10 @@ public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
     // Start is called before the first frame update
     void Start()
     {
-        _gameState.evolveState = GameState.EvolveState.Caterpillar;
+        _gameState.evolveState = GameState.EvolveState.Pupa;
         _gameState.player = gameObject;
-        
-        if (onEvolve!=null)
+
+        if (onEvolve != null)
         {
             onEvolve = new UnityEvent();
         }
@@ -36,26 +35,24 @@ public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
             {
                 Evolve();
             }
-            else
-            {
-                print("Not enough food.");
-            }
         }
     }
 
-    public bool CanEvolve()
-    {
-        return _gameState.Food >= _gameState.foodTarget;
-    }
-
-    [ContextMenu("Evolve Now!")]
     public void Evolve()
     {
-        print("Caterpillar: Evolving!");
+        print("Pupa: Evolving!");
+        OnEvolve();
+
         Vector3 pos = transform.position;
         Destroy(gameObject);
         Instantiate(nextEvolvePrefab, pos, Quaternion.identity);
     }
+
+    public bool CanEvolve()
+    {
+        return true;
+    }
+
     public void OnEvolve()
     {
         onEvolve.Invoke();

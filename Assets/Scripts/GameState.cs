@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
@@ -20,13 +21,15 @@ public class GameState : MonoBehaviour
         Butterfly
     }
 
+    private CinemachineVirtualCamera _camera;
+
     [Header("Player state")] private PlayerState _lastKnownPlayerState;
     private EvolveState _lastKnownEvolveState;
     public PlayerState playerState;
     public EvolveState evolveState;
     public GameObject player;
 
-    [Header("Catapillar Food")] public int foodCurrent;
+    [Header("Caterpillar Food")] public int foodCurrent;
 
     public int Food
     {
@@ -41,6 +44,7 @@ public class GameState : MonoBehaviour
     {
         _lastKnownPlayerState = PlayerState.Unknown;
         _lastKnownEvolveState = EvolveState.Unknown;
+        _camera = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     // Start is called before the first frame update
@@ -63,6 +67,15 @@ public class GameState : MonoBehaviour
             OnPlayStateChange();
             _lastKnownPlayerState = playerState;
         }
+
+        if (player == null)
+        {
+            _camera.Follow = null;
+        }
+        else
+        {
+            _camera.Follow = player.transform;
+        }
     }
 
     private void OnPlayStateChange()
@@ -72,7 +85,7 @@ public class GameState : MonoBehaviour
 
     private void OnEvolveStateChange()
     {
-        Debug.Log("New Evolve state: " + playerState);
+        Debug.Log("New Evolve state: " + evolveState);
     }
 
     [ContextMenu("Add 1 food")]
