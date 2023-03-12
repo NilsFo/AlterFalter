@@ -15,6 +15,9 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     public AnimationCurve accelerationCurve;
 
     [Header("Animation")] public GameObject mySpriteHolder;
+    public float accelerationSpriteRotationSpeed = 1.0f;
+    public float velocitySpriteRotationMult = 1.0f;
+    public float uprightAlignmentRotationSpeed = 1.0f;
 
     private Rigidbody2D _myRigidBody;
     private Vector2 _lastFramePosition;
@@ -71,7 +74,43 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
         _velocity *= movementSpeed;
 
         // Updating Visuals
-        print(_ridgitbodyVelocity);
+        float horizontal_velocity = -_ridgitbodyVelocity.x * velocitySpriteRotationMult;
+        if (IsPlayerInputPressed())
+        {
+            horizontal_velocity = Mathf.Max(2, -_ridgitbodyVelocity.x);
+            if (leftMode && -_ridgitbodyVelocity.x <= 0)
+            {
+                horizontal_velocity = Mathf.Min(-2, -_ridgitbodyVelocity.x);
+            }
+
+            horizontal_velocity = horizontal_velocity * accelerationSpriteRotationSpeed;
+        }
+
+        if (!IsPlayerInputPressed() && _ridgitbodyVelocity.x == 0)
+        {
+            // Get the current up direction vector
+            Vector3 currentUpDirection = transform.up;
+
+            // Calculate the angle between the current up direction and the world up direction
+            float angleToUp = Vector3.Angle(currentUpDirection, Vector3.up);
+
+            // If the angle is greater than a small threshold value, rotate the transform towards the world up direction
+            if (angleToUp > 0.1f)
+            {
+                float step = uprightAlignmentRotationSpeed * Time.deltaTime;
+                Vector3 newUpDirection = Vector3.RotateTowards(currentUpDirection, Vector3.up, step, 0.0f);
+                mySpriteHolder.transform.rotation = Quaternion.LookRotation(mySpriteHolder.transform.forward, newUpDirection);
+            }
+            // If the angle is small enough, set the transform's up direction to the world up direction
+            else
+            {
+                mySpriteHolder.transform.up = Vector3.up;
+            }
+        }
+        else
+        {
+            mySpriteHolder.transform.Rotate(0, 0, horizontal_velocity);
+        }
     }
 
     private void FixedUpdate()

@@ -263,6 +263,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   mySpriteHolder: {fileID: 4400459971215261028}
+  accelerationSpriteRotationSpeed: 1
+  velocitySpriteRotationMult: 1
+  uprightAlignmentRotationSpeed: 100
 --- !u!114 &7190840422697449797
 MonoBehaviour:
   m_ObjectHideFlags: 0

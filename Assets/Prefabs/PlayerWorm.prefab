@@ -42,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 54604565959463b4a85c63c6395a83bf, type: 3}
+      objectReference: {fileID: 21300000, guid: 789a5bea13f19054aa4c03e0fe4e00f5, type: 3}
     - target: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a477f4324e66244a137b4b4b8e599a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextEvolvePrefab: {fileID: 0}
+  nextEvolvePrefab: {fileID: 4687777104812428699, guid: 4038fb5ea14542b48b3d66aaba41bbaf, type: 3}
   onEvolve:
     m_PersistentCalls:
       m_Calls: []
