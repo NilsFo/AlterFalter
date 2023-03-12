@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+        PlayerInventory playerInventory = col.GetComponent<PlayerInventory>();
 
         if (playerInventory != null)
         {
