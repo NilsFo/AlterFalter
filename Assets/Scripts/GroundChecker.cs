@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GroundChecker : MonoBehaviour
 {
 
-    public PlayerMovement myPlayerMovement;
+    [FormerlySerializedAs("myPlayerMovement")] public PlayerMovementDebug myPlayerMovementDebug;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        myPlayerMovement.OnCollisionWithGround();
+        myPlayerMovementDebug.OnCollisionWithGround();
     }
 }

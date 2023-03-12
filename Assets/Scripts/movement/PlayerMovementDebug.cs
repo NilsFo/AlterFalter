@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementDebug : MonoBehaviour, IPlayerMovementBase
 {
     [Header("Player Movement")] public bool movementEnabled = true;
     public PlayerMovementParam movementParams;
