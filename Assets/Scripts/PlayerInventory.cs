@@ -7,11 +7,18 @@ public class PlayerInventory : MonoBehaviour
 
     public int NumberOfPlants { get; private set; }
 
-    public void PlantsCollected()
+    public int PlantsCollected()
     {
         NumberOfPlants++;
+        GameState gameState = FindObjectOfType<GameState>();
+        gameState.Food = NumberOfPlants;
+        return NumberOfPlants;
     }
 
+    public int GetNumberOfPlants()
+    {
+        return NumberOfPlants;
+    }
 
     // Start is called before the first frame update
     void Start()
