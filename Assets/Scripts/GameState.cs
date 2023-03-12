@@ -10,7 +10,9 @@ public class GameState : MonoBehaviour
     {
         Unknown,
         Playing,
-        GameOver
+        Paused,
+        Win,
+        Lost
     }
 
     public enum EvolveState
