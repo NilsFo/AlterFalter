@@ -32,16 +32,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
             Vector2 force = new Vector2(movementForce, 0);
             myRigidbody.AddForce(force);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
             Vector2 force = new Vector2(-movementForce, 0);
             myRigidbody.AddForce(force);
         }
     }
+
 }
