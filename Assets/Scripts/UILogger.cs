@@ -18,14 +18,13 @@ public class UILogger : MonoBehaviour
     public bool showFPS;
     public bool showLog;
     public bool separatorBetweenEntries;
-
     void Start()
     {
         logList = new List<LogObject>();
         fpsUpdateTimerCurrent = 0;
         fpsCache = 0;
     }
-
+  
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
