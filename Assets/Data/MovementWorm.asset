@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f95c506e46d4f358862f6b3ff03ee7b, type: 3}
   m_Name: MovementWorm
   m_EditorClassIdentifier: 
-  velocity: 0
-  friction: 0
+  canJump: 1
+  mass: 3
+  angularDrag: 0.05
+  linearDrag: 13
+  gravityScale: 14
+  movementForce: 180000
+  jumpingForce: 8500
