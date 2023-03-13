@@ -23,6 +23,6 @@ public class FoodProgressTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = preText + " " + _gameState.Food + "/" + _gameState.foodTarget;
+        text.text = preText + " " + _gameState.foodCurrent + "/" + _gameState.foodTarget; 
     }
 }

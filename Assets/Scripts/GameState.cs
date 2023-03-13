@@ -53,6 +53,7 @@ public class GameState : MonoBehaviour
     void Start()
     {
         ResetFood();
+        foodTarget = 3;
     }
 
     // Update is called once per frame
@@ -88,6 +89,7 @@ public class GameState : MonoBehaviour
     private void OnEvolveStateChange()
     {
         Debug.Log("New Evolve state: " + evolveState);
+        ResetFood();
     }
 
     [ContextMenu("Add 1 food")]
