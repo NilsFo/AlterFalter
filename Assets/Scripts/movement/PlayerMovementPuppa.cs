@@ -15,6 +15,7 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     public AnimationCurve accelerationCurve;
 
     [Header("Animation")] public GameObject mySpriteHolder;
+    public float spinningUpRotationSpeed = 5;
     public float accelerationSpriteRotationSpeed = 1.0f;
     public float velocitySpriteRotationMult = 1.0f;
     public float uprightAlignmentRotationSpeed = 1.0f;
@@ -77,10 +78,11 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
         float horizontal_velocity = -_ridgitbodyVelocity.x * velocitySpriteRotationMult;
         if (IsPlayerInputPressed())
         {
-            horizontal_velocity = Mathf.Max(2, -_ridgitbodyVelocity.x);
+            float temporalBaseRotationSpeed = spinningUpRotationSpeed * Time.deltaTime;
+            horizontal_velocity = Mathf.Max(temporalBaseRotationSpeed, -_ridgitbodyVelocity.x);
             if (leftMode && -_ridgitbodyVelocity.x <= 0)
             {
-                horizontal_velocity = Mathf.Min(-2, -_ridgitbodyVelocity.x);
+                horizontal_velocity = Mathf.Min(temporalBaseRotationSpeed * -1, -_ridgitbodyVelocity.x);
             }
 
             horizontal_velocity = horizontal_velocity * accelerationSpriteRotationSpeed;
@@ -99,7 +101,8 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
             {
                 float step = uprightAlignmentRotationSpeed * Time.deltaTime;
                 Vector3 newUpDirection = Vector3.RotateTowards(currentUpDirection, Vector3.up, step, 0.0f);
-                mySpriteHolder.transform.rotation = Quaternion.LookRotation(mySpriteHolder.transform.forward, newUpDirection);
+                mySpriteHolder.transform.rotation =
+                    Quaternion.LookRotation(mySpriteHolder.transform.forward, newUpDirection);
             }
             // If the angle is small enough, set the transform's up direction to the world up direction
             else
