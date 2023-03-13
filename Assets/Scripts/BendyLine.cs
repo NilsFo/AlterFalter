@@ -1,23 +1,21 @@
-using System;
 using UnityEngine;
 
 public class BendyLine : MonoBehaviour
 {
     public GameObject object1;
     public GameObject object2;
-    public float bendDistance;
-    public float lineThickness;
     public Color lineColor;
     public Material lineMaterial;
+    public LineRenderer lineRenderer;
+    public int numPoints = 7;
+    public float maxDistance = 5f;
+    public float bendDistanceFactor = 1f;
 
-    private LineRenderer lineRenderer;
-
-    void Start()
+    private void Start()
     {
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.material = lineMaterial;
-        lineRenderer.startWidth = lineThickness;
-        lineRenderer.endWidth = lineThickness;
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startWidth = 0.2f;
+        lineRenderer.endWidth = 0.2f;
         lineRenderer.startColor = lineColor;
         lineRenderer.endColor = lineColor;
     }
@@ -32,43 +30,27 @@ public class BendyLine : MonoBehaviour
         Vector3 pos1 = object1.transform.position;
         Vector3 pos2 = object2.transform.position;
 
+        // Calculate the midpoint between the two endpoints
+        Vector3 midPoint = Vector3.Lerp(pos1, pos2, 0.5f);
+
+        // Calculate the distance between the two endpoints
         float distance = Vector3.Distance(pos1, pos2);
 
-        if (distance <= bendDistance)
+        // Calculate the control point for the bezier curve
+        Vector3 controlPoint = midPoint + new Vector3(0, (2f - distance) * bendDistanceFactor, 0);
+
+        // Calculate the positions for the line renderer using a bezier curve
+        Vector3[] positions = new Vector3[numPoints];
+
+        for (int i = 0; i < numPoints; i++)
         {
-            Vector3[] positions = new Vector3[15];
-            positions[0] = pos1;
-            for (int i = 1; i < positions.Length - 1; i++)
-            {
-                float t = (float)i / (positions.Length - 1);
-                Vector3 pos = Vector3.Lerp(pos1, pos2, t);
-                Vector3 dir = pos - pos1;
-                Vector3 dirHalf = dir * 0.5f;
-                Vector3 dirMid = pos1 + dirHalf;
-
-                float bendT = distance / bendDistance;
-                float angle = Mathf.Lerp(0f, Mathf.PI / 2f, bendT);
-                Vector3 norm = new Vector3(dirHalf.y, -dirHalf.x, 0f).normalized;
-                norm = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward) * norm;
-
-                Vector3 mid = dirMid + norm * (bendDistance - distance) * 0.5f;
-                Vector3 up = new Vector3(0f, 1f, 0f);
-
-                positions[i] = mid + up * (float)i / (positions.Length - 1) * (pos2.y - pos1.y);
-            }
-            positions[positions.Length - 1] = pos2;
-
-            lineRenderer.positionCount = positions.Length;
-            lineRenderer.SetPositions(positions);
+            float t = (float)i / (numPoints - 1);
+            Vector3 p1 = Vector3.Lerp(pos1, controlPoint, t);
+            Vector3 p2 = Vector3.Lerp(controlPoint, pos2, t);
+            positions[i] = Vector3.Lerp(p1, p2, t);
         }
-        else
-        {
-            Vector3[] positions = new Vector3[2];
-            positions[0] = pos1;
-            positions[1] = pos2;
 
-            lineRenderer.positionCount = positions.Length;
-            lineRenderer.SetPositions(positions);
-        }
+        lineRenderer.positionCount = positions.Length;
+        lineRenderer.SetPositions(positions);
     }
 }
