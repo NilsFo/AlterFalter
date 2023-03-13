@@ -16,7 +16,7 @@ public class Caterpillar_Movement : MonoBehaviour
     private Vector3 startingPosition;
     private bool followMouse = false;
 
-private bool canMovePerimeterObject = true; // add this variable to track whether the action can be performed
+    private bool canMovePerimeterObject = true; // add this variable to track whether the action can be performed
 
     private void Start()
     {
@@ -31,10 +31,10 @@ private bool canMovePerimeterObject = true; // add this variable to track whethe
         }
 
         if (followMouse)
-{
-    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    transform.position = new Vector2(mousePosition.x, mousePosition.y);
-}
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector2(mousePosition.x, mousePosition.y);
+        }
         else
         {
             float horizontalInput = 0f;
@@ -50,7 +50,7 @@ private bool canMovePerimeterObject = true; // add this variable to track whethe
 
             if (horizontalInput != 0f)
             {
-                transform.Translate(new Vector2(0f,horizontalInput * speed * Time.deltaTime));
+                transform.Translate(new Vector2(horizontalInput * speed * Time.deltaTime, 0f));
 
                 // Ensure the object stays within the screen boundaries
                 float screenHalfWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
@@ -65,43 +65,43 @@ private bool canMovePerimeterObject = true; // add this variable to track whethe
         {
             transform.position = startingPosition;
         }
-    // Ensure the first object stays within the perimeter of the perimeterObject
-    if (perimeterObject != null)
-    {
-        Vector3 offset = transform.position - perimeterObject.position;
-        float distance = offset.magnitude;
-        if (distance > perimeterRadius)
+
+        // Ensure the first object stays within the perimeter of the perimeterObject
+        if (perimeterObject != null)
         {
-            Vector3 direction = offset.normalized;
-            transform.position = perimeterObject.position + direction * perimeterRadius;
+            Vector3 offset = transform.position - perimeterObject.position;
+            float distance = offset.magnitude;
+            if (distance > perimeterRadius)
+            {
+                Vector3 direction = offset.normalized;
+                transform.position = perimeterObject.position + direction * perimeterRadius;
+            }
+        }
+
+        // Move the perimeter object to the position of the second object with a cooldown of 1 second
+        if (Input.GetMouseButtonDown(1) && canMovePerimeterObject)
+        {
+            if (secondObject != null)
+            {
+                StartCoroutine(MovePerimeterObject(secondObject.position));
+            }
         }
     }
 
-    // Move the perimeter object to the position of the second object with a cooldown of 1 second
-    if (Input.GetMouseButtonDown(1) && canMovePerimeterObject)
+    private IEnumerator MovePerimeterObject(Vector3 targetPosition)
     {
-        if (secondObject != null)
+        canMovePerimeterObject = false; // set the variable to false to prevent further actions
+
+        // move the perimeter object to the target position over a period of 1 second
+        float elapsedTime = 0f;
+        Vector3 startPosition = perimeterObject.position;
+        while (elapsedTime < 1f)
         {
-            StartCoroutine(MovePerimeterObject(secondObject.position));
+            elapsedTime += Time.deltaTime;
+            perimeterObject.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
+            yield return null;
         }
+
+        canMovePerimeterObject = true; // set the variable to true to allow the action to be performed again
     }
 }
-
-private IEnumerator MovePerimeterObject(Vector3 targetPosition)
-{
-    canMovePerimeterObject = false; // set the variable to false to prevent further actions
-
-    // move the perimeter object to the target position over a period of 1 second
-    float elapsedTime = 0f;
-    Vector3 startPosition = perimeterObject.position;
-    while (elapsedTime < 1f)
-    {
-        elapsedTime += Time.deltaTime;
-        perimeterObject.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
-        yield return null;
-    }
-
-    canMovePerimeterObject = true; // set the variable to true to allow the action to be performed again
-}
-    }
-    

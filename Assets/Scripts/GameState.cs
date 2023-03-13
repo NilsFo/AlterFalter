@@ -32,15 +32,13 @@ public class GameState : MonoBehaviour
     public GameObject player;
 
     [Header("Caterpillar Food")] public int foodCurrent;
+    public int foodTarget;
 
     public int Food
     {
         get => foodCurrent;
         set => SetFood(value);
     }
-
-    public int foodTarget;
-
 
     private void Awake()
     {
@@ -53,7 +51,6 @@ public class GameState : MonoBehaviour
     void Start()
     {
         ResetFood();
-        foodTarget = 3;
     }
 
     // Update is called once per frame

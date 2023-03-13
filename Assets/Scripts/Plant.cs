@@ -18,12 +18,12 @@ public class Plant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        var gameState = FindObjectOfType<GameState>();
+        gameState.foodTarget += 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

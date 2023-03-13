@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,5 +31,10 @@ public class Caterpillar_Segment_Creator : MonoBehaviour
             Vector3 position = lineRenderer.GetPosition(i);
             spriteObjects[i - 1].transform.position = position; // Decrement i to match the new array index
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("I am dead. No big surprise.");
     }
 }

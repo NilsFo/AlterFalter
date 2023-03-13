@@ -47,3 +47,5 @@ MonoBehaviour:
   playerState: 1
   evolveState: 0
   player: {fileID: 0}
+  foodCurrent: 0
+  foodTarget: 0
