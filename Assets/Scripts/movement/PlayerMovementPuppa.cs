@@ -35,8 +35,6 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     private void Start()
     {
         _velocity = new Vector2();
-        _gameState.evolveState = GameState.EvolveState.Pupa;
-        _gameState.player = gameObject;
     }
 
     private void Update()

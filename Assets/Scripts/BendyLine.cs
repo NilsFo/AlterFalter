@@ -11,6 +11,8 @@ public class BendyLine : MonoBehaviour
     public float maxDistance = 5f;
     public float bendDistanceFactor = 1f;
 
+    public GameObject wormHeadIndicator;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -50,6 +52,7 @@ public class BendyLine : MonoBehaviour
             positions[i] = Vector3.Lerp(p1, p2, t);
         }
 
+        wormHeadIndicator.transform.position = positions[numPoints-1];
         lineRenderer.positionCount = positions.Length;
         lineRenderer.SetPositions(positions);
     }

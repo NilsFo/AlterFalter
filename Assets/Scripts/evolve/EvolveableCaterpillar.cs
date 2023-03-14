@@ -10,6 +10,9 @@ public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
     public GameObject nextEvolvePrefab;
     public UnityEvent onEvolve;
 
+    public GameObject cameraTarget;
+    public GameObject evolveCreationLocation;
+
     private void Awake()
     {
         _gameState = FindObjectOfType<GameState>();
@@ -19,9 +22,10 @@ public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
     void Start()
     {
         _gameState.evolveState = GameState.EvolveState.Caterpillar;
-        _gameState.player = gameObject;
-        
-        if (onEvolve!=null)
+        _gameState.RegisterPlayer(gameObject);
+        _gameState.Camera.Follow = cameraTarget.transform;
+
+        if (onEvolve != null)
         {
             onEvolve = new UnityEvent();
         }
@@ -48,14 +52,14 @@ public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
         return _gameState.Food >= _gameState.foodTarget;
     }
 
-    [ContextMenu("Evolve Now!")]
     public void Evolve()
     {
         print("Caterpillar: Evolving!");
-        Vector3 pos = transform.position;
+        Vector3 pos = evolveCreationLocation.transform.position;
         Destroy(gameObject);
         Instantiate(nextEvolvePrefab, pos, Quaternion.identity);
     }
+
     public void OnEvolve()
     {
         onEvolve.Invoke();
