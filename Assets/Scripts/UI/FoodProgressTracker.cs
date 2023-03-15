@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[Obsolete]
 public class FoodProgressTracker : MonoBehaviour
 {
     private GameState _gameState;
@@ -23,6 +24,6 @@ public class FoodProgressTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = preText + " " + _gameState.foodCurrent + "/" + _gameState.foodTarget; 
+        text.text = preText + " " + _gameState.foodCurrent + "/" + _gameState.foodTarget;
     }
 }

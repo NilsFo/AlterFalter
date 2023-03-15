@@ -17,8 +17,8 @@ public class EvolveableButterfly : MonoBehaviour, IEvolveable
     // Start is called before the first frame update
     void Start()
     {
-        _gameState.evolveState = GameState.EvolveState.Butterfly;
         _gameState.RegisterPlayer(gameObject);
+        _gameState.evolveState = GameState.EvolveState.Butterfly;
         if (onEvolve != null)
         {
             onEvolve = new UnityEvent();

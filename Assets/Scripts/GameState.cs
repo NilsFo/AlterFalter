@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameState : MonoBehaviour
 {
@@ -23,6 +25,9 @@ public class GameState : MonoBehaviour
         Butterfly
     }
 
+    public GameObject Player => _player;
+    public FlowerCollectible Flower => _blume;
+
     private CinemachineVirtualCamera _camera;
     public CinemachineVirtualCamera Camera => _camera;
 
@@ -30,10 +35,22 @@ public class GameState : MonoBehaviour
     private EvolveState _lastKnownEvolveState;
     public PlayerState playerState;
     public EvolveState evolveState;
-    [SerializeField] private GameObject player;
+    private HealthBar _healthBar;
+    private GameObject _player;
+    private FlowerCollectible _blume;
 
     [Header("Caterpillar Food")] public int foodCurrent;
     public int foodTarget;
+
+    [Header("Pupa Evolve")] public int pupaEvolveCurrent = 0;
+    public int pupaEvolveTarget = 20;
+    public float pupaEvolveDecay = 0.35f;
+    private float _pupaEvolveDecayTimer = 0;
+
+    [Header("Butterfly Objective")] public float butterflyFlowerMaxDistance;
+
+    [Header("Callbacks")] public UnityEvent evolveStateChange;
+    public UnityEvent gameStateChange;
 
     public int Food
     {
@@ -45,12 +62,26 @@ public class GameState : MonoBehaviour
     {
         _lastKnownPlayerState = PlayerState.Unknown;
         _lastKnownEvolveState = EvolveState.Unknown;
+        _healthBar = FindObjectOfType<HealthBar>();
+        _blume = FindObjectOfType<FlowerCollectible>();
         _camera = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        pupaEvolveCurrent = 0;
+        _pupaEvolveDecayTimer = 0;
+        if (evolveStateChange != null)
+        {
+            evolveStateChange = new UnityEvent();
+        }
+
+        if (gameStateChange != null)
+        {
+            gameStateChange = new UnityEvent();
+        }
+
         ResetFood();
     }
 
@@ -68,17 +99,37 @@ public class GameState : MonoBehaviour
             OnPlayStateChange();
             _lastKnownPlayerState = playerState;
         }
+
+        //#################
+        // Pupa decay
+        _pupaEvolveDecayTimer += Time.deltaTime;
+        if (_pupaEvolveDecayTimer > pupaEvolveDecay)
+        {
+            _pupaEvolveDecayTimer = 0;
+            pupaEvolveCurrent -= 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && evolveState == EvolveState.Pupa)
+        {
+            _pupaEvolveDecayTimer = 0;
+            pupaEvolveCurrent++;
+        }
+
+        pupaEvolveCurrent = Mathf.Clamp(pupaEvolveCurrent, 0, pupaEvolveTarget);
     }
 
     private void OnPlayStateChange()
     {
         Debug.Log("New Player state: " + playerState);
+        gameStateChange.Invoke();
     }
 
     private void OnEvolveStateChange()
     {
         Debug.Log("New Evolve state: " + evolveState);
         ResetFood();
+        evolveStateChange.Invoke();
+        _healthBar.OnEvolve();
     }
 
     [ContextMenu("Add 1 food")]
@@ -107,18 +158,27 @@ public class GameState : MonoBehaviour
     {
     }
 
-    public void RegisterPlayer(GameObject gameObject)
+    public void RegisterPlayer(GameObject newPlayer)
     {
-        player = gameObject;
-        
-        if (player == null)
+        _player = newPlayer;
+
+        if (_player == null)
         {
             _camera.Follow = null;
         }
         else
         {
-            _camera.Follow = player.transform;
+            _camera.Follow = _player.transform;
         }
     }
-    
+
+    public float PlayerDistanceToFlower()
+    {
+        if (Player == null || Flower == null)
+        {
+            return butterflyFlowerMaxDistance;
+        }
+
+        return Vector2.Distance(Player.transform.position, Flower.transform.position);
+    }
 }

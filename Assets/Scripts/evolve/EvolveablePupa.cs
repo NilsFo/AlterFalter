@@ -17,8 +17,8 @@ public class EvolveablePupa : MonoBehaviour, IEvolveable
     // Start is called before the first frame update
     void Start()
     {
-        _gameState.evolveState = GameState.EvolveState.Pupa;
         _gameState.RegisterPlayer(gameObject);
+        _gameState.evolveState = GameState.EvolveState.Pupa;
 
         if (onEvolve != null)
         {
@@ -50,7 +50,7 @@ public class EvolveablePupa : MonoBehaviour, IEvolveable
 
     public bool CanEvolve()
     {
-        return true;
+        return _gameState.pupaEvolveCurrent >= _gameState.pupaEvolveTarget;
     }
 
     public void OnEvolve()

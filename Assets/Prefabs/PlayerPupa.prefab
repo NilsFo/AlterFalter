@@ -267,6 +267,21 @@ MonoBehaviour:
   accelerationSpriteRotationSpeed: 1
   velocitySpriteRotationMult: 0.85
   uprightAlignmentRotationSpeed: 100
+--- !u!114 &3350144696113737228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687777104812428699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08be883a731fd3e4e8a08be1ebc4ecf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCurrent: 0
+  healthMax: 1000000
+  invincible: 1
 --- !u!114 &7190840422697449797
 MonoBehaviour:
   m_ObjectHideFlags: 0

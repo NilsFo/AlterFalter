@@ -21,8 +21,8 @@ public class EvolveableCaterpillar : MonoBehaviour, IEvolveable
     // Start is called before the first frame update
     void Start()
     {
-        _gameState.evolveState = GameState.EvolveState.Caterpillar;
         _gameState.RegisterPlayer(gameObject);
+        _gameState.evolveState = GameState.EvolveState.Caterpillar;
         _gameState.Camera.Follow = cameraTarget.transform;
 
         if (onEvolve != null)

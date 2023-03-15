@@ -46,6 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerState: 1
   evolveState: 0
-  player: {fileID: 0}
   foodCurrent: 0
   foodTarget: 0
+  pupaEvolveCurrent: 0
+  pupaEvolveTarget: 11
+  pupaEvolveDecay: 0.35
+  butterflyFlowerMaxDistance: 15
+  evolveStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  gameStateChange:
+    m_PersistentCalls:
+      m_Calls: []

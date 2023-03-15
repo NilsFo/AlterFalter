@@ -183,3 +183,18 @@ MonoBehaviour:
   movementEnabled: 1
   movementSpeed: 45
   myRigidBody: {fileID: 5004622967125329545}
+--- !u!114 &7620352256865550793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857625459097398465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08be883a731fd3e4e8a08be1ebc4ecf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCurrent: 10
+  healthMax: 10
+  invincible: 0
