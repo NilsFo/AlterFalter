@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Caterpillar_Movement : MonoBehaviour
 {
@@ -9,18 +12,24 @@ public class Caterpillar_Movement : MonoBehaviour
     public KeyCode rightKey = KeyCode.D;
     public KeyCode toggleKey = KeyCode.E;
     public KeyCode resetKey = KeyCode.R;
-    public Transform perimeterObject; // assign the object that defines the perimeter in the Inspector
+    public Transform worm_end; // assign the object that defines the perimeter in the Inspector
+    public Transform worm_start; // assign the second object in the Inspector
     public float perimeterRadius = 3f;
-    public Transform secondObject; // assign the second object in the Inspector
-    private Vector3 savedPosition; // to save the position of perimeterObject when right mouse button is pressed
+    private Vector3 savedPosition;
     private Vector3 startingPosition;
     private bool followMouse = false;
-
-    private bool canMovePerimeterObject = true; // add this variable to track whether the action can be performed
+    private bool canMovePerimeterObject = true;
+    private float moveDelay = 0f; // Add a new variable for the delay
+    public Tilemap tilemap;
+    private BoxCollider2D boxCollider;
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        startingPosition = transform.position;
+        startingPosition = worm_start.position;
+        boxCollider = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        tilemap = GetComponent<Tilemap>();
     }
 
     private void Update()
@@ -33,7 +42,8 @@ public class Caterpillar_Movement : MonoBehaviour
         if (followMouse)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(mousePosition.x, mousePosition.y);
+            Vector2 newPosition = new Vector2(mousePosition.x, mousePosition.y);
+            KeepWithinPerimeter(newPosition);
         }
         else
         {
@@ -48,61 +58,112 @@ public class Caterpillar_Movement : MonoBehaviour
                 horizontalInput = 1f;
             }
 
-            if (horizontalInput != 0f)
+            if (horizontalInput != 0f && moveDelay <= 0) // Add a condition to check the delay
             {
-                transform.Translate(new Vector2(horizontalInput * speed * Time.deltaTime, 0f));
+                Vector2 targetPos = new Vector2(0f, horizontalInput * speed * Time.deltaTime);
+                Vector3 worldTargetPos =  transform.TransformPoint(targetPos);
+                rb.MovePosition(worldTargetPos);
+                //worm_start.Translate(new Vector2(0f, horizontalInput * speed * Time.deltaTime));
 
-                // Ensure the object stays within the screen boundaries
                 float screenHalfWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
-                Vector3 pos = transform.position;
+                Vector3 pos = worm_start.position;
                 pos.x = Mathf.Clamp(pos.x, -screenHalfWidth, screenHalfWidth);
-                pos.y = transform.position.y;
-                transform.position = pos;
+                pos.y = worm_start.position.y;
+                worm_start.position = pos;
             }
-        }
 
-        if (Input.GetKeyDown(resetKey))
-        {
-            transform.position = startingPosition;
-        }
-
-        // Ensure the first object stays within the perimeter of the perimeterObject
-        if (perimeterObject != null)
-        {
-            Vector3 offset = transform.position - perimeterObject.position;
-            float distance = offset.magnitude;
-            if (distance > perimeterRadius)
+            if (Input.GetKeyDown(resetKey))
             {
-                Vector3 direction = offset.normalized;
-                transform.position = perimeterObject.position + direction * perimeterRadius;
+                worm_start.position = startingPosition;
             }
+
+            if (worm_end != null)
+            {
+                Vector3 offset = worm_start.position - worm_end.position;
+                float distance = offset.magnitude;
+                if (distance > perimeterRadius)
+                {
+                    Vector3 direction = offset.normalized;
+                    worm_start.position = worm_end.position + direction * perimeterRadius;
+                }
+            }
+
+            // Move the worm_end to the position of the worm_start with a cooldown of 1 second
+            if (Input.GetMouseButtonDown(1) && canMovePerimeterObject)
+            {
+                if (worm_start != null)
+                {
+                    StartCoroutine(MovePerimeterObject(worm_start.position));
+                }
+            }
+
+            moveDelay -= Time.deltaTime;
+            // Cast a ray from the center of the object's collider downwards
+            Vector2 raycastOrigin = transform.position;
+            raycastOrigin.y -= GetComponent<Collider2D>().bounds.extents.y;
+            Debug.DrawRay(raycastOrigin,Vector2.down);
+            RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.1f);
+
+            if (hit.collider != null && hit.collider.gameObject.GetComponent<Tilemap>() == tilemap)
+            {
+                // Debug.Log("Collision detected with tilemap!");
+                // Do something here, e.g. destroy the object or trigger some other action
+            }
+
+            SnapSecondObject();
         }
 
-        // Move the perimeter object to the position of the second object with a cooldown of 1 second
-        if (Input.GetMouseButtonDown(1) && canMovePerimeterObject)
+        IEnumerator MovePerimeterObject(Vector3 targetPosition)
         {
-            if (secondObject != null)
+            canMovePerimeterObject = false;
+            float elapsedTime = 0f;
+            float duration = 0.05f;
+            moveDelay = duration; // Set the delay to the Lerp duration
+            Vector3 startPosition = worm_end.position;
+            while (elapsedTime < duration)
             {
-                StartCoroutine(MovePerimeterObject(secondObject.position));
+                elapsedTime += Time.deltaTime;
+                worm_end.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+                yield return null;
             }
+
+            canMovePerimeterObject = true;
+        }
+
+        //OnCollisionEnter2D();
+
+        void SnapSecondObject()
+        {
+            if (worm_start != null)
+            {
+                Vector3 offset = worm_end.position - worm_start.position;
+                float distance = offset.magnitude;
+                if (distance >= perimeterRadius)
+                {
+                    Vector3 direction = offset.normalized;
+                    worm_end.position = worm_start.position + direction * perimeterRadius;
+                    StartCoroutine(MovePerimeterObject(worm_start.position));
+                }
+            }
+        }
+//
+
+
+        void KeepWithinPerimeter(Vector2 newPosition)
+        {
+            if (worm_end != null)
+            {
+                Vector3 offset = newPosition - (Vector2)worm_end.position;
+                float distance = offset.magnitude;
+                if (distance > perimeterRadius)
+                {
+                    Vector3 direction = offset.normalized;
+                    newPosition = worm_end.position + direction * perimeterRadius;
+                }
+            }
+
+            worm_start.position = newPosition;
         }
     }
 
-    private IEnumerator MovePerimeterObject(Vector3 targetPosition)
-    {
-        canMovePerimeterObject = false; // set the variable to false to prevent further actions
-
-        // move the perimeter object to the target position over a period of 1 second
-        float elapsedTime = 0f;
-        Vector3 startPosition = perimeterObject.position;
-        while (elapsedTime < 1f)
-        {
-            elapsedTime += Time.deltaTime;
-            perimeterObject.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
-            yield return null;
-        }
-
-        canMovePerimeterObject = true; // set the variable to true to allow the action to be performed again
-    }
-    
 }

@@ -210,8 +210,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &7916254419399176018
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -255,9 +255,10 @@ MonoBehaviour:
   rightKey: 100
   toggleKey: 101
   resetKey: 114
-  perimeterObject: {fileID: 7916254420266445593}
-  perimeterRadius: 3
-  secondObject: {fileID: 7916254419399176031}
+  worm_end: {fileID: 7916254420266445593}
+  worm_start: {fileID: 7916254419399176031}
+  perimeterRadius: 2
+  tilemap: {fileID: 0}
 --- !u!114 &7916254419399176016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +276,7 @@ MonoBehaviour:
   lineColor: {r: 0, g: 0.10007739, b: 1, a: 0}
   lineMaterial: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   lineRenderer: {fileID: 0}
-  numPoints: 6
+  numPoints: 12
   maxDistance: 2
   bendDistanceFactor: 1
   wormHeadIndicator: {fileID: 5797351215656117739}
@@ -336,6 +337,12 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
@@ -515,8 +522,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &7916254420266445596
 BoxCollider2D:
   m_ObjectHideFlags: 0

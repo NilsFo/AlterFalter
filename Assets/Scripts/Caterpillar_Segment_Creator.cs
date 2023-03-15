@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Caterpillar_Segment_Creator : MonoBehaviour
@@ -24,6 +24,19 @@ public class Caterpillar_Segment_Creator : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+#if UNITY_EDITOR
+        for (int i = 1; i < lineRenderer.positionCount - 1; i++) // Start from index 1, end at second-to-last index
+        {
+            Vector3 position = lineRenderer.GetPosition(i);
+            Vector3 wireOrigin = new Vector3(position.x, position.y, position.z - 1);
+            // Handles.DrawWireDisc(wireOrigin, Vector3.forward, 1);
+            Handles.Label(wireOrigin, "S: " + i);
+        }
+#endif
+    }
+
     void Update()
     {
         for (int i = 1; i < lineRenderer.positionCount - 1; i++) // Start from index 1, end at second-to-last index
@@ -31,10 +44,5 @@ public class Caterpillar_Segment_Creator : MonoBehaviour
             Vector3 position = lineRenderer.GetPosition(i);
             spriteObjects[i - 1].transform.position = position; // Decrement i to match the new array index
         }
-    }
-
-    private void OnDestroy()
-    {
-        Debug.Log("I am dead. No big surprise.");
     }
 }

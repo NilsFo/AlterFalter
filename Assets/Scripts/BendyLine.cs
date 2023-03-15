@@ -7,7 +7,7 @@ public class BendyLine : MonoBehaviour
     public Color lineColor;
     public Material lineMaterial;
     public LineRenderer lineRenderer;
-    public int numPoints = 7;
+    public int numPoints = 12;
     public float maxDistance = 5f;
     public float bendDistanceFactor = 1f;
 
