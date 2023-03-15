@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 1736231073037468305}
   - component: {fileID: 3389566602049875612}
   - component: {fileID: 8345346821949920281}
-  - component: {fileID: 6360640609123774175}
   m_Layer: 5
   m_Name: LooseTF
   m_TagString: Untagged
@@ -172,20 +171,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6360640609123774175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007925778969209434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f4280f237edb744b6bc8187917e874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  affectingObject: {fileID: 0}
-  playerStateVisible: 0
 --- !u!1 &5613878295420060257
 GameObject:
   m_ObjectHideFlags: 0

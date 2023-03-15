@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPupa
       objectReference: {fileID: 0}
+    - target: {fileID: 1300591787134659019, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2650053265627916097, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
       propertyPath: m_Size.x
       value: 1
