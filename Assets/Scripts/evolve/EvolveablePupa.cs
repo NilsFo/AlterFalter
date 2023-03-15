@@ -18,7 +18,7 @@ public class EvolveablePupa : MonoBehaviour, IEvolveable
     void Start()
     {
         _gameState.evolveState = GameState.EvolveState.Pupa;
-        _gameState.player = gameObject;
+        _gameState.RegisterPlayer(gameObject);
 
         if (onEvolve != null)
         {

@@ -21,8 +21,6 @@ public class PlayerMovementButterfly : MonoBehaviour, IPlayerMovementBase
     private void Start()
     {
         _velocity = new Vector2();
-        _gameState.evolveState = GameState.EvolveState.Butterfly;
-        _gameState.player = gameObject;
     }
 
     private void Update()

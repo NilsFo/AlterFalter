@@ -18,7 +18,7 @@ public class EvolveableButterfly : MonoBehaviour, IEvolveable
     void Start()
     {
         _gameState.evolveState = GameState.EvolveState.Butterfly;
-        _gameState.player = gameObject;
+        _gameState.RegisterPlayer(gameObject);
         if (onEvolve != null)
         {
             onEvolve = new UnityEvent();

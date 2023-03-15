@@ -24,12 +24,13 @@ public class GameState : MonoBehaviour
     }
 
     private CinemachineVirtualCamera _camera;
+    public CinemachineVirtualCamera Camera => _camera;
 
     [Header("Player state")] private PlayerState _lastKnownPlayerState;
     private EvolveState _lastKnownEvolveState;
     public PlayerState playerState;
     public EvolveState evolveState;
-    public GameObject player;
+    [SerializeField] private GameObject player;
 
     [Header("Caterpillar Food")] public int foodCurrent;
     public int foodTarget;
@@ -66,15 +67,6 @@ public class GameState : MonoBehaviour
         {
             OnPlayStateChange();
             _lastKnownPlayerState = playerState;
-        }
-
-        if (player == null)
-        {
-            _camera.Follow = null;
-        }
-        else
-        {
-            _camera.Follow = player.transform;
         }
     }
 
@@ -114,4 +106,19 @@ public class GameState : MonoBehaviour
     private void FixedUpdate()
     {
     }
+
+    public void RegisterPlayer(GameObject gameObject)
+    {
+        player = gameObject;
+        
+        if (player == null)
+        {
+            _camera.Follow = null;
+        }
+        else
+        {
+            _camera.Follow = player.transform;
+        }
+    }
+    
 }

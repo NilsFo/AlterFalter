@@ -104,4 +104,5 @@ public class Caterpillar_Movement : MonoBehaviour
 
         canMovePerimeterObject = true; // set the variable to true to allow the action to be performed again
     }
+    
 }
