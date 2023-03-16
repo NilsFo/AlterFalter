@@ -33,6 +33,12 @@ public class PlayerHealth : MonoBehaviour
         {
             _gameState.playerState = GameState.PlayerState.Lost;
         }
+
+        float y = transform.position.y;
+        if (y <= 500)
+        {
+            _gameState.playerState = GameState.PlayerState.Lost;
+        }
     }
 
     private void LateUpdate()
@@ -89,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
-        
+
         // TODO implement
         print("TODO: Implement Knockback!");
     }
