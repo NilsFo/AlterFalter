@@ -18,6 +18,7 @@ public class Caterpillar_Segment_Creator : MonoBehaviour
             Vector3 position = lineRenderer.GetPosition(i);
             GameObject newObject = new GameObject("Worm_Seg_" + i.ToString());
             newObject.transform.position = position;
+            newObject.transform.SetParent(transform); // Set the parent of the new object to the PlayerCaterpillar
             spriteObjects[i - 1] = newObject; // Decrement i to match the new array index
             SpriteRenderer spriteRenderer = newObject.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = sprite;

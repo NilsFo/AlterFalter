@@ -16,8 +16,8 @@ public class BendyLine : MonoBehaviour
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startWidth = 0.2f;
-        lineRenderer.endWidth = 0.2f;
+        lineRenderer.startWidth = 0.0f;
+        lineRenderer.endWidth = 0.0f;
         lineRenderer.startColor = lineColor;
         lineRenderer.endColor = lineColor;
     }
