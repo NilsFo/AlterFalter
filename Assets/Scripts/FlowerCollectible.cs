@@ -27,11 +27,14 @@ public class FlowerCollectible : MonoBehaviour
         print("Collision?");
 
         GameObject go = col.gameObject;
-        go.GetComponent<PlayerMovementButterfly>();
-        if (go != null)
+        PlayerMovementButterfly btf = go.GetComponent<PlayerMovementButterfly>();
+        if (btf != null)
         {
-            gameObject.SetActive(false);
-            _gameState.playerState = GameState.PlayerState.Win;
+            if (_gameState.evolveState == GameState.EvolveState.Butterfly)
+            {
+                gameObject.SetActive(false);
+                _gameState.playerState = GameState.PlayerState.Win;
+            }
         }
     }
 }

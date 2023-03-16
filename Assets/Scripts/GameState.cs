@@ -5,6 +5,7 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -116,6 +117,19 @@ public class GameState : MonoBehaviour
         }
 
         pupaEvolveCurrent = Mathf.Clamp(pupaEvolveCurrent, 0, pupaEvolveTarget);
+
+        // Back to Main Menu
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+
+        // Restart Level
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            var s = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(s.name);
+        }
     }
 
     private void OnPlayStateChange()
@@ -147,6 +161,11 @@ public class GameState : MonoBehaviour
         }
 
         return Food;
+    }
+
+    public void Win()
+    {
+        playerState = PlayerState.Win;
     }
 
     public void ResetFood()
