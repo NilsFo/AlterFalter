@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -224,9 +225,7 @@ void MoveWormEndToWorm()
 
 
 
-
-
-    bool IsWithinPerimeter(Vector3 targetPosition)
+bool IsWithinPerimeter(Vector3 targetPosition)
     {
         float distance = Vector3.Distance(targetPosition, wormEnd.transform.position);
         return distance <= maxDistanceFromWormEnd;
