@@ -266,6 +266,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  attackVelocityThreshold: 8
   mySpriteHolder: {fileID: 4400459971215261028}
   spinningUpRotationSpeed: 900
   accelerationSpriteRotationSpeed: 1
@@ -286,6 +287,7 @@ MonoBehaviour:
   healthCurrent: 0
   healthMax: 1000000
   invincible: 1
+  knockBackAble: 0
 --- !u!114 &7190840422697449797
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
@@ -13,6 +14,7 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     public float accelerationTimer = 0f;
     public float accelerationMult = 1.0f;
     public AnimationCurve accelerationCurve;
+    public float attackVelocityThreshold = 0;
 
     [Header("Animation")] public GameObject mySpriteHolder;
     public float spinningUpRotationSpeed = 5;
@@ -114,6 +116,23 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        EnemyBugAI enemyBugAI = col.gameObject.GetComponent<EnemyBugAI>();
+        float velocity = _ridgitbodyVelocity.x;
+        if (enemyBugAI != null)
+        {
+            if (velocity >= attackVelocityThreshold)
+            {
+                enemyBugAI.BowlAway();
+            }
+            else
+            {
+                enemyBugAI.TurnAround();
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         _myRigidBody.AddForce(_velocity * Time.fixedDeltaTime * 100);
@@ -125,5 +144,14 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     public bool IsPlayerInputPressed()
     {
         return Input.GetAxisRaw("Horizontal") != 0;
+    }
+
+    private void OnDrawGizmos()
+    {
+#if UNITY_EDITOR
+        Vector3 position = transform.position;
+        // Handles.DrawWireDisc(wireOrigin, Vector3.forward, 1);
+        Handles.Label(position, "Vel: " + _ridgitbodyVelocity.x);
+#endif
     }
 }

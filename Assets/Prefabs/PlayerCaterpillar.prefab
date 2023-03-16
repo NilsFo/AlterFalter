@@ -99,6 +99,7 @@ MonoBehaviour:
   healthCurrent: 0
   healthMax: 3
   invincible: 0
+  knockBackAble: 1
 --- !u!1 &7916254419399176017
 GameObject:
   m_ObjectHideFlags: 0

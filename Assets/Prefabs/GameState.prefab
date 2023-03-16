@@ -49,7 +49,7 @@ MonoBehaviour:
   foodCurrent: 0
   foodTarget: 0
   pupaEvolveCurrent: 0
-  pupaEvolveTarget: 11
+  pupaEvolveTarget: 9
   pupaEvolveDecay: 0.35
   butterflyFlowerMaxDistance: 15
   evolveStateChange:

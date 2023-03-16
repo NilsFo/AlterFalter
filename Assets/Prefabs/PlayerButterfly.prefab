@@ -202,3 +202,4 @@ MonoBehaviour:
   healthCurrent: 10
   healthMax: 10
   invincible: 0
+  knockBackAble: 1

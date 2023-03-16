@@ -5,31 +5,57 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
+    public float knockBackStrength;
+    public int damageStrength = 1;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+        PlayerHealth health = ExtractPlayerHealthComponent(other.gameObject);
+        if (health != null)
+        {
+            DealDamageToPlayer(health);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        PlayerHealth health = ExtractPlayerHealthComponent(col.gameObject);
+        if (health != null)
+        {
+            DealDamageToPlayer(health);
+        }
+    }
+
+    private PlayerHealth ExtractPlayerHealthComponent(GameObject obj)
+    {
+        PlayerHealth playerHealth = obj.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            Debug.Log("Player Collision! Direct hit!");
-            playerHealth.TakeDamage();
+            return playerHealth;
         }
 
-        var segmentHealthHealth = other.gameObject.GetComponent<WormSegmentHealth>();
+        var segmentHealthHealth = obj.GetComponent<WormSegmentHealth>();
         if (segmentHealthHealth != null)
         {
             playerHealth = segmentHealthHealth.playerHealth;
-            Debug.Log("Player Segment Collision");
-            playerHealth.TakeDamage();
+            return playerHealth;
+        }
+
+        return null;
+    }
+
+    private void OnCollisionStay(Collision collisionInfo)
+    {
+        PlayerHealth health = ExtractPlayerHealthComponent(collisionInfo.gameObject);
+        if (health != null)
+        {
+            health.KnockBackPlayer(gameObject, knockBackStrength);
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void DealDamageToPlayer(PlayerHealth playerHealth)
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        playerHealth.TakeDamage(damageStrength);
+        playerHealth.KnockBackPlayer(gameObject, knockBackStrength);
     }
 }

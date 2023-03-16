@@ -99,6 +99,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4387606357620626404}
     m_Modifications:
+    - target: {fileID: 3743145757076817823, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743145757076817823, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743145757076817823, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743145757076817823, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743145757076817823, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612938365859478384, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
+      propertyPath: m_text
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8729903801848814148, guid: e9b9cf55e2adfbc47852b199dd18591b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -36,14 +36,6 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-        if (_health == null)
-        {
-            Debug.LogError("No health found!");
-        }
-    }
-
     public void OnEvolve()
     {
         var player = _gameState.Player;

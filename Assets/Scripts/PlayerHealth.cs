@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int healthCurrent;
     public int healthMax = 10;
     public bool invincible;
+    public bool knockBackAble;
 
     private GameState _gameState;
 
@@ -26,6 +27,19 @@ public class PlayerHealth : MonoBehaviour
         if (invincible)
         {
             FullyHeal();
+        }
+
+        if (IsDead())
+        {
+            _gameState.playerState = GameState.PlayerState.Lost;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (IsDead())
+        {
+            _gameState.playerState = GameState.PlayerState.Lost;
         }
     }
 
@@ -54,12 +68,29 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount = 1)
     {
-        healthCurrent -= 1;
+        if (invincible)
+        {
+            FullyHeal();
+            return;
+        }
+
+        healthCurrent -= amount;
         healthCurrent = Math.Max(healthCurrent, 0);
 
         if (IsDead())
         {
-            _gameState.playerState=GameState.PlayerState.Lost;
+            _gameState.playerState = GameState.PlayerState.Lost;
         }
+    }
+
+    public void KnockBackPlayer(GameObject source, float knockBackStrength)
+    {
+        if (!knockBackAble)
+        {
+            return;
+        }
+        
+        // TODO implement
+        print("TODO: Implement Knockback!");
     }
 }
