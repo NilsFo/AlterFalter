@@ -25,6 +25,11 @@ public class PlayerMovementButterfly : MonoBehaviour, IPlayerMovementBase
 
     private void Update()
     {
+        if (_gameState.playerState==GameState.PlayerState.Lost)
+        {
+            movementEnabled = false;
+        }
+        
         Vector2 moveInput = new Vector2();
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");

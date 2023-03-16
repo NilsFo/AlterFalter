@@ -41,6 +41,11 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
 
     private void Update()
     {
+        if (_gameState.playerState == GameState.PlayerState.Lost)
+        {
+            movementEnabled = false;
+        }
+
         // Updating Movement / Translation
         Vector2 moveInput = new Vector2();
         var playerInput = Input.GetAxis("Horizontal");

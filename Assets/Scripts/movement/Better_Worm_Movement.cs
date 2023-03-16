@@ -32,7 +32,8 @@ public class Better_Worm_Movement : MonoBehaviour
     public GameObject wormEnd;
     private FixedJoint2D wormEndFixedJoint; 
 
-
+    // TODO: Disable Controls when game is lost!
+    // TODO implement knockback
 
     void Start()
     {

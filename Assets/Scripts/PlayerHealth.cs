@@ -24,6 +24,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        if (_gameState.playerState == GameState.PlayerState.Win)
+        {
+            invincible = true;
+        }
+
         if (invincible)
         {
             FullyHeal();
@@ -35,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         float y = transform.position.y;
-        if (y <= 500)
+        if (y <= -500)
         {
             _gameState.playerState = GameState.PlayerState.Lost;
         }
