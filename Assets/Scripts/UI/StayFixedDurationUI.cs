@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class StayFixedDurationUI : MonoBehaviour
 {
     public Better_Worm_Movement wormMovement;
-    public Text durationText;
+    public TextMeshProUGUI durationText;
     public Vector3 offset;
 
     void Start()
@@ -24,8 +24,9 @@ public class StayFixedDurationUI : MonoBehaviour
             float remainingDuration = wormMovement.GetRemainingStayFixedDuration();
             durationText.text = "Grip: " + remainingDuration.ToString("F1");
         }
-    }
 
+        UpdateDurationText(); // Call this function in the Update method
+    }
 
     void UpdateDurationText()
     {
@@ -39,7 +40,12 @@ public class StayFixedDurationUI : MonoBehaviour
         if (remainingDuration > 0f)
         {
             durationText.text = "Grip: " + remainingDuration.ToString("F1");
-            durationText.transform.position = Camera.main.WorldToScreenPoint(wormMovement.transform.position + offset);
+
+            // Get the RectTransform component of the durationText object
+            RectTransform durationTextRectTransform = durationText.GetComponent<RectTransform>();
+
+            // Set the anchored position of the durationText in screen space
+            durationTextRectTransform.position = Camera.main.WorldToScreenPoint(wormMovement.transform.position + offset);
         }
         else
         {
