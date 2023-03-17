@@ -40,6 +40,7 @@ public class GameState : MonoBehaviour
     private GameObject _player;
     private FlowerCollectible _blume;
     private UIFadeOut _fadeOut;
+    private MusicManager _musicManager;
 
     [Header("Levels")] public string nextLevelName;
     public bool winOnEvolve = false;
@@ -71,6 +72,7 @@ public class GameState : MonoBehaviour
         _blume = FindObjectOfType<FlowerCollectible>();
         _camera = FindObjectOfType<CinemachineVirtualCamera>();
         _fadeOut = FindObjectOfType<UIFadeOut>();
+        _musicManager = FindObjectOfType<MusicManager>();
     }
 
     // Start is called before the first frame update
@@ -89,6 +91,7 @@ public class GameState : MonoBehaviour
         }
 
         ResetFood();
+        _musicManager.PlaySongIntro();
     }
 
     // Update is called once per frame
@@ -132,9 +135,14 @@ public class GameState : MonoBehaviour
         // Restart Level
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            var s = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(s.name);
+            RestartLevel();
         }
+    }
+
+    private void RestartLevel()
+    {
+        var s = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(s.name);
     }
 
     private void OnPlayStateChange()
@@ -145,6 +153,11 @@ public class GameState : MonoBehaviour
         if (playerState == PlayerState.Win)
         {
             OnWin();
+        }
+
+        if (playerState == PlayerState.Lost)
+        {
+            OnLoose();
         }
     }
 
@@ -187,11 +200,19 @@ public class GameState : MonoBehaviour
     {
         Invoke(nameof(FadeOut), 2);
         Invoke(nameof(NextLevel), 4);
+        _musicManager.PlayStingerWin();
     }
 
     private void FadeOut()
     {
         _fadeOut.alphaChangeRate *= -1;
+    }
+
+    private void OnLoose()
+    {
+        Invoke(nameof(FadeOut), 2);
+        Invoke(nameof(RestartLevel), 4);
+        _musicManager.PlayStringerLoose();
     }
 
     public void ResetFood()

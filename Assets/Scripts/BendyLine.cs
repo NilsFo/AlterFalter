@@ -20,6 +20,8 @@ public class BendyLine : MonoBehaviour
         lineRenderer.endWidth = 0.0f;
         lineRenderer.startColor = lineColor;
         lineRenderer.endColor = lineColor;
+        
+        
     }
 
     void Update()

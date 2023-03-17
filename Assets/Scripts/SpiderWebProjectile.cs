@@ -8,8 +8,10 @@ using UnityEngine.Tilemaps;
 public class SpiderWebProjectile : MonoBehaviour
 {
     public Vector2 moveDirection;
-    public float speed = 5;
+    public float speedDefault = 10;
+    public float speedButterfly = 15;
     private Vector2 _velocity;
+    private GameState _gameState;
 
     public int damage;
     public float knockBackStrength;
@@ -22,6 +24,7 @@ public class SpiderWebProjectile : MonoBehaviour
 
     private void Awake()
     {
+        _gameState = FindObjectOfType<GameState>();
         _gameObject = FindObjectOfType<GameState>();
         _tilemapCollider2D = FindObjectOfType<TilemapCollider2D>();
 
@@ -41,6 +44,12 @@ public class SpiderWebProjectile : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 pos = transform.position;
+        float speed = speedDefault;
+        if (_gameState.evolveState == GameState.EvolveState.Butterfly)
+        {
+            speed = speedButterfly;
+        }
+
         Vector3 targetPos = new Vector3(moveDirection.x, moveDirection.y) * speed * Time.fixedDeltaTime;
         targetPos.z = pos.z;
 
@@ -77,12 +86,16 @@ public class SpiderWebProjectile : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (_tilemap != null)
+        {
 #if UNITY_EDITOR
-        var worldPos = _tilemap.WorldToCell(transform.position);
-        var tileCenter = _tilemap.GetCellCenterLocal(worldPos);
-        Handles.Label(tileCenter, "X");
+            var worldPos = _tilemap.WorldToCell(transform.position);
+            var tileCenter = _tilemap.GetCellCenterLocal(worldPos);
+            Handles.Label(tileCenter, "X");
 #endif
+        }
     }
+
 
     private PlayerHealth ExtractPlayerHealthComponent(GameObject obj)
     {

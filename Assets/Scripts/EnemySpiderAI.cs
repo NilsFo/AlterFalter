@@ -10,7 +10,8 @@ public class EnemySpiderAI : MonoBehaviour
     private GameState _gameState;
 
     [Header("AI")] public float visionRange = 6.9f;
-    public float projectileShotDelay = 2f;
+    public float projectileShotDelayDefault = 2f;
+    public float projectileShotDelayButterfly = 2f;
     public float projectileShootAnimTime = 1f;
     private GameObject _aimLock;
     private float _projectileShotDelayTimer = 0;
@@ -37,6 +38,12 @@ public class EnemySpiderAI : MonoBehaviour
         UpdateSeePlayer();
         if (CanSeePlayer())
         {
+            float projectileShotDelay = projectileShotDelayDefault;
+            if (_gameState.evolveState == GameState.EvolveState.Butterfly)
+            {
+                projectileShotDelay = projectileShotDelayButterfly;
+            }
+
             _projectileShotDelayTimer = _projectileShotDelayTimer + Time.deltaTime;
             if (_projectileShotDelayTimer >= projectileShotDelay)
             {

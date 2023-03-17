@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerState: 1
   evolveState: 0
+  nextLevelName: 
+  winOnEvolve: 0
   foodCurrent: 0
   foodTarget: 0
   pupaEvolveCurrent: 0

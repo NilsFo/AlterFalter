@@ -86,7 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionRange: 8
-  projectileShotDelay: 2
+  projectileShotDelayDefault: 3
+  projectileShotDelayButterfly: 1.5
   projectileShootAnimTime: 0.05
   spriteDefault: {fileID: -1966999703, guid: 081978b730d57144bbfebe641b0dd703, type: 3}
   spriteAim: {fileID: 146045531, guid: 081978b730d57144bbfebe641b0dd703, type: 3}

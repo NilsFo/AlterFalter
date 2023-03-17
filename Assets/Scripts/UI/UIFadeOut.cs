@@ -19,6 +19,11 @@ public class UIFadeOut : MonoBehaviour
         delay_current = 0;
     }
 
+    private void Awake()
+    {
+        myRenderer.SetAlpha(initialAlpha);
+    }
+
     // Update is called once per frame
     void Update()
     {
