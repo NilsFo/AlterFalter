@@ -187,6 +187,7 @@ MonoBehaviour:
   movementEnabled: 1
   movementSpeed: 45
   myRigidBody: {fileID: 5004622967125329545}
+  pupaPoof: {fileID: 3734505253938437954, guid: 69f6625507e10494a8b54fd27eddaa92, type: 3}
 --- !u!114 &7620352256865550793
 MonoBehaviour:
   m_ObjectHideFlags: 0

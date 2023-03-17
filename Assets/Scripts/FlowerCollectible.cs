@@ -6,6 +6,7 @@ using UnityEngine;
 public class FlowerCollectible : MonoBehaviour
 {
     private GameState _gameState;
+    public GameObject flowerPoof;
 
     private void Awake()
     {
@@ -27,11 +28,19 @@ public class FlowerCollectible : MonoBehaviour
         print("Collision?");
 
         GameObject go = col.gameObject;
-        go.GetComponent<PlayerMovementButterfly>();
-        if (go != null)
+        PlayerMovementButterfly btf = go.GetComponent<PlayerMovementButterfly>();
+        if (btf != null)
         {
-            gameObject.SetActive(false);
-            _gameState.playerState = GameState.PlayerState.Win;
+            if (_gameState.evolveState == GameState.EvolveState.Butterfly)
+            {
+                gameObject.SetActive(false);
+                _gameState.Win();
+                
+                var poof = Instantiate(flowerPoof);
+                var pos = transform.position;
+                pos.z = transform.position.z - 1;
+                poof.transform.position = pos;
+            }
         }
     }
 }

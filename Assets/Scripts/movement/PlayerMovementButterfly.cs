@@ -12,6 +12,7 @@ public class PlayerMovementButterfly : MonoBehaviour, IPlayerMovementBase
     public float movementSpeed = 100;
 
     public Rigidbody2D myRigidBody;
+    public GameObject pupaPoof;
     
     private void Awake()
     {
@@ -21,10 +22,20 @@ public class PlayerMovementButterfly : MonoBehaviour, IPlayerMovementBase
     private void Start()
     {
         _velocity = new Vector2();
+        
+        var poof = Instantiate(pupaPoof);
+        var pos = transform.position;
+        pos.z = transform.position.z - 1;
+        poof.transform.position = pos;
     }
 
     private void Update()
     {
+        if (_gameState.playerState==GameState.PlayerState.Lost)
+        {
+            movementEnabled = false;
+        }
+        
         Vector2 moveInput = new Vector2();
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");

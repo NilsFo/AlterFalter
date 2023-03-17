@@ -3,14 +3,34 @@ using UnityEngine;
 public class WormEndController : MonoBehaviour
 {
     public bool isColliding;
+    public LayerMask tilemapLayer;
+    public float checkRadius = 0.1f;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private CapsuleCollider2D capsuleCollider;
+
+    private void Start()
     {
-        isColliding = true;
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    private void Update()
     {
-        isColliding = false;
+        CheckCollision();
+    }
+
+    void CheckCollision()
+    {
+        Vector2 capsuleColliderSize = new Vector2(capsuleCollider.size.x * transform.localScale.x, capsuleCollider.size.y * transform.localScale.y);
+        Collider2D[] results = new Collider2D[1];
+        int hitCount = Physics2D.OverlapCapsuleNonAlloc(transform.position, capsuleColliderSize, capsuleCollider.direction, 0, results, tilemapLayer);
+
+        if (hitCount > 0)
+        {
+            isColliding = true;
+        }
+        else
+        {
+            isColliding = false;
+        }
     }
 }

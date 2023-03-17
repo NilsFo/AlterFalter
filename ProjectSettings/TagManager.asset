@@ -14,10 +14,10 @@ TagManager:
   - CaterpillarSegment
   - Worm
   - Worm_End
-  - 
-  - 
-  - 
-  - 
+  - SpiderBody
+  - SpiderProjectile
+  - Tilemap
+  - Clutter
   - 
   - 
   - 

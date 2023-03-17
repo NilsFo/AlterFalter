@@ -24,12 +24,23 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        if (_gameState.playerState == GameState.PlayerState.Win)
+        {
+            invincible = true;
+        }
+
         if (invincible)
         {
             FullyHeal();
         }
 
         if (IsDead())
+        {
+            _gameState.playerState = GameState.PlayerState.Lost;
+        }
+
+        float y = transform.position.y;
+        if (y <= -500)
         {
             _gameState.playerState = GameState.PlayerState.Lost;
         }
@@ -89,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
-        
+
         // TODO implement
         print("TODO: Implement Knockback!");
     }

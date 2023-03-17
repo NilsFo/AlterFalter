@@ -26,20 +26,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109635780052160555}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5897014454778049456}
   m_Father: {fileID: 6177058638357358847}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!223 &8648293064389103707
 Canvas:
   m_ObjectHideFlags: 0
@@ -49,7 +49,7 @@ Canvas:
   m_GameObject: {fileID: 109635780052160555}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4793777753655593652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 5897014454778049456}
   - component: {fileID: 8889674651675556447}
   - component: {fileID: 7450581998770457013}
+  - component: {fileID: 4918992678304143197}
   m_Layer: 5
   m_Name: UI Text
   m_TagString: Untagged
@@ -200,9 +201,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: -0.3}
 --- !u!222 &8889674651675556447
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -231,10 +232,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hallo Welt
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9836bf76ede9d28489243a06a671139d, type: 2}
+  m_sharedMaterial: {fileID: 832488639546379081, guid: 9836bf76ede9d28489243a06a671139d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -258,8 +259,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -300,6 +301,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4918992678304143197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922702319233454083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7853ffe9b9a754443bb2082586e281d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wormMovement: {fileID: 8383733531176115954}
+  durationText: {fileID: 7450581998770457013}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &6421375114351119324
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9275e0015d4005439a4bc4bff7ef014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAble: 1
   playerHealth: {fileID: 6164583587306958107}
 --- !u!70 &7708841192783770565
 CapsuleCollider2D:
@@ -688,9 +705,8 @@ MonoBehaviour:
     m_Bits: 1
   boxSize: {x: 0, y: 0, z: 0}
   maxDistanceFromWormEnd: 2.5
-  toggleMouseControlKey: 116
   stayFixedDuration: 5
-  snapCooldown: 1
+  snapCooldown: 0.5
   snapDuration: 0.15
   wormEndRigidbody: {fileID: 7916254420266445599}
   wormEnd: {fileID: 7916254420266445587}
@@ -815,6 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9275e0015d4005439a4bc4bff7ef014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAble: 0
   playerHealth: {fileID: 6164583587306958107}
 --- !u!70 &6109386097426123406
 CapsuleCollider2D:
@@ -845,3 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliding: 0
+  tilemapLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  checkRadius: 0.1
