@@ -234,8 +234,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9836bf76ede9d28489243a06a671139d, type: 2}
+  m_sharedMaterial: {fileID: 832488639546379081, guid: 9836bf76ede9d28489243a06a671139d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9275e0015d4005439a4bc4bff7ef014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAble: 1
   playerHealth: {fileID: 6164583587306958107}
 --- !u!70 &7708841192783770565
 CapsuleCollider2D:
@@ -831,6 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9275e0015d4005439a4bc4bff7ef014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAble: 0
   playerHealth: {fileID: 6164583587306958107}
 --- !u!70 &6109386097426123406
 CapsuleCollider2D:

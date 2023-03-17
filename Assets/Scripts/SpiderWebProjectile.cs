@@ -96,7 +96,10 @@ public class SpiderWebProjectile : MonoBehaviour
         if (segmentHealthHealth != null)
         {
             playerHealth = segmentHealthHealth.playerHealth;
-            return playerHealth;
+            if (segmentHealthHealth.damageAble)
+            {
+                return playerHealth;
+            }
         }
 
         return null;
