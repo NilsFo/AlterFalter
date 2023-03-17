@@ -4970,7 +4970,7 @@ GameObject:
   - component: {fileID: 958472551}
   - component: {fileID: 958472550}
   - component: {fileID: 958472552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Obstacles (Colliding)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

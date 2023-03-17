@@ -278,11 +278,12 @@ public class Better_Worm_Movement : MonoBehaviour
         Collider2D[] results = new Collider2D[1];
         // Perform an OverlapCollider check with the worm_end's collider
         int overlapCount = Physics2D.OverlapCollider(wormEndCollider, new ContactFilter2D().NoFilter(), results);
-        // Check if any of the overlapping colliders belong to the "Tilemap" layer
+        // Check if any of the overlapping colliders belong to the "Default" layer
         for (int i = 0; i < overlapCount; i++)
         {
-            if (results[i].gameObject.layer == LayerMask.NameToLayer("Tilemap"))
+            if (results[i].gameObject.layer == LayerMask.NameToLayer("Default"))
             {
+                Debug.Log("touching");
                 return true;
             }
         }
@@ -352,6 +353,19 @@ public class Better_Worm_Movement : MonoBehaviour
         while (remainingStayFixedDuration > 0f)
         {
             remainingStayFixedDuration -= Time.deltaTime; // Decrease the remaining duration
+
+            // Add a small delay before checking if worm_end is not colliding with the tilemap anymore
+            //yield return new WaitForSeconds(1f);
+
+            // Check if worm_end is not colliding with the tilemap anymore
+            if (!wormEndController.isColliding)
+            {
+                // If not colliding, immediately disable the fixed joint and exit the coroutine
+                remainingStayFixedDuration = 0f;
+                wormEndFixedJoint.enabled = false;
+                yield break;
+            }
+
             yield return null;
         }
 
@@ -365,7 +379,7 @@ public class Better_Worm_Movement : MonoBehaviour
         int overlapCount = Physics2D.OverlapBox(position, size, 0, new ContactFilter2D().NoFilter(), results);
         for (int i = 0; i < overlapCount; i++)
         {
-            if (results[i].gameObject.layer == LayerMask.NameToLayer("Tilemap"))
+            if (results[i].gameObject.layer == LayerMask.NameToLayer("Default"))
             {
                 return true;
             }
