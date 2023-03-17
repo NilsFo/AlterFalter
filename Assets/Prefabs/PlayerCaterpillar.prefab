@@ -534,6 +534,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 7916254419399176025}
   sprite: {fileID: 21300000, guid: 04c0b110da5b8294091351087d31aea9, type: 3}
+  gameState: {fileID: 0}
+  flashInterval: 0.1
+  flashDurationRedTint: 0.5
+  headSprite: {fileID: 7916254419399176028}
+  arschSprite: {fileID: 7916254420266445598}
 --- !u!120 &7916254419399176025
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -705,7 +710,7 @@ MonoBehaviour:
     m_Bits: 1
   boxSize: {x: 0, y: 0, z: 0}
   maxDistanceFromWormEnd: 2.5
-  stayFixedDuration: 5
+  stayFixedDuration: 15
   snapCooldown: 0.5
   snapDuration: 0.15
   wormEndRigidbody: {fileID: 7916254420266445599}

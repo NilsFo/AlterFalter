@@ -151,5 +151,5 @@ MonoBehaviour:
   pfsUpdateTimer: 1
   text: {fileID: 6589661720480374885}
   showFPS: 1
-  showLog: 1
+  showLog: 0
   separatorBetweenEntries: 0

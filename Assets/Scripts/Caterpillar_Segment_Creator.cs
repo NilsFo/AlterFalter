@@ -10,7 +10,8 @@ public class Caterpillar_Segment_Creator : MonoBehaviour
     public GameState gameState; // Add a reference to the GameState script
     public float flashInterval = 0.1f;
     public float flashDurationRedTint = 0.5f;
-
+    public SpriteRenderer headSprite;
+    public SpriteRenderer arschSprite;
 
     private GameObject[] spriteObjects;
     private bool isFlashing = false;
@@ -54,6 +55,8 @@ void FixedUpdate()
 
         // Apply the currentDmgTint color directly from the GameState
         spriteRenderer.color = gameState.currentDmgTint;
+        headSprite.color = gameState.currentDmgTint;
+        arschSprite.color = gameState.currentDmgTint;
     }
 
     CheckForRedTint();
