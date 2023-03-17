@@ -6,11 +6,13 @@ using UnityEngine;
 public class FlowerCollectible : MonoBehaviour
 {
     private GameState _gameState;
+    private MusicManager _musicManager;
     public GameObject flowerPoof;
 
     private void Awake()
     {
         _gameState = FindObjectOfType<GameState>();
+        _musicManager = FindObjectOfType<MusicManager>();
     }
 
     // Start is called before the first frame update

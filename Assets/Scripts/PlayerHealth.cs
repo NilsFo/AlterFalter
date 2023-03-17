@@ -10,10 +10,12 @@ public class PlayerHealth : MonoBehaviour
     public bool invincible;
     public bool knockBackAble;
 
+    private MusicManager _musicManager;
     private GameState _gameState;
 
     private void Awake()
     {
+        _musicManager = FindObjectOfType<MusicManager>();
         _gameState = FindObjectOfType<GameState>();
     }
 
@@ -92,6 +94,10 @@ public class PlayerHealth : MonoBehaviour
         if (IsDead())
         {
             _gameState.playerState = GameState.PlayerState.Lost;
+        }
+        else
+        {
+            _musicManager.CreateAudioClip(_gameState.dmgClip);
         }
     }
 

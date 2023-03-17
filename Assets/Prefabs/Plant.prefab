@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantParticlePoofPrefab: {fileID: 5667140123913890099, guid: 0aec3256f857d084d99c71f546555b1e, type: 3}
+  plantCollect: {fileID: 8300000, guid: e597b6b80e44a5046aa097cd13e24232, type: 3}
 --- !u!70 &7518126037896732765
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

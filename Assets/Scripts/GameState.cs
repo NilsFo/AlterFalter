@@ -41,6 +41,7 @@ public class GameState : MonoBehaviour
     private FlowerCollectible _blume;
     private UIFadeOut _fadeOut;
     private MusicManager _musicManager;
+    public AudioClip dmgClip;
 
     [Header("Levels")] public string nextLevelName;
     public bool winOnEvolve = false;

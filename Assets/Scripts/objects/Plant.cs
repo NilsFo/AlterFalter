@@ -7,10 +7,14 @@ public class Plant : MonoBehaviour
 {
     private GameState _gameState;
     public GameObject plantParticlePoofPrefab;
+    
+    private MusicManager _musicManager;
+    public AudioClip plantCollect;
 
     private void Awake()
     {
         _gameState = FindObjectOfType<GameState>();
+        _musicManager = FindObjectOfType<MusicManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -24,6 +28,7 @@ public class Plant : MonoBehaviour
 
             playerInventory.PlantsCollected();
             gameObject.SetActive(false);
+            _musicManager.CreateAudioClip(plantCollect);
         }
     }
 

@@ -36,6 +36,7 @@ public class Better_Worm_Movement : MonoBehaviour
     private FixedJoint2D wormEndFixedJoint; // Reference to the worm_end's FixedJoint2D component
     public GameState gameState;
     public GameObject canvas;
+
     public GameObject canvas_target;
     // Start method is called when the script is first enabled
     // TODO: Disable Controls when game is lost!
@@ -60,9 +61,10 @@ public class Better_Worm_Movement : MonoBehaviour
     }
 
     void LateUpdate()
-        {
-            canvas.transform.position = canvas_target.transform.position;
-        }
+    {
+        canvas.transform.position = canvas_target.transform.position;
+    }
+
 // The Update method is called once per frame
     void FixedUpdate()
     {
@@ -87,7 +89,7 @@ public class Better_Worm_Movement : MonoBehaviour
 
             // If the right mouse button is clicked, check if snapping is allowed and move the worm_end to the worm
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
             {
                 if (Time.time - lastSnapTime >= snapCooldown && (IsTouchingTilemap() ||
                                                                  (remainingStayFixedDuration > 0 &&
