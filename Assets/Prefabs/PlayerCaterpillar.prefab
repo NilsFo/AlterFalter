@@ -125,13 +125,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2206184361011594045}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0.70000076, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1646191683867879420}
-  m_Father: {fileID: 7983624555909934965}
-  m_RootOrder: 0
+  m_Father: {fileID: 6564551613226404619}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5797351215656117739
 GameObject:
@@ -160,8 +160,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6177058638357358847}
+  m_Children: []
   m_Father: {fileID: 7916254419399176031}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -348,6 +347,7 @@ Transform:
   m_Children:
   - {fileID: 7916254419399176031}
   - {fileID: 7916254420266445593}
+  - {fileID: 6177058638357358847}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -385,6 +385,8 @@ MonoBehaviour:
   healthMax: 3
   invincible: 0
   knockBackAble: 1
+  damageFlashTimer: 0
+  damageFlashSpeed: 0
 --- !u!1 &7916254419399176017
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +712,9 @@ MonoBehaviour:
   snapDuration: 0.15
   wormEndRigidbody: {fileID: 7916254420266445599}
   wormEnd: {fileID: 7916254420266445587}
+  gameState: {fileID: 0}
+  canvas: {fileID: 2206184361011594045}
+  canvas_target: {fileID: 7916254419399176017}
 --- !u!1 &7916254420266445587
 GameObject:
   m_ObjectHideFlags: 0
