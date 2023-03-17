@@ -33,6 +33,7 @@ public class Better_Worm_Movement : MonoBehaviour
     private float remainingStayFixedDuration; // Remaining duration for which the worm end stays fixed
     public GameObject wormEnd; // The worm_end game object
     private FixedJoint2D wormEndFixedJoint; // Reference to the worm_end's FixedJoint2D component
+    private GameState _gameState;
 
     // Start method is called when the script is first enabled
     // TODO: Disable Controls when game is lost!
