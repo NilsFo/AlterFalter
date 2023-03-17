@@ -35,7 +35,8 @@ public class Better_Worm_Movement : MonoBehaviour
     public GameObject wormEnd; // The worm_end game object
     private FixedJoint2D wormEndFixedJoint; // Reference to the worm_end's FixedJoint2D component
     public GameState gameState;
-
+    public GameObject canvas;
+    public GameObject canvas_target;
     // Start method is called when the script is first enabled
     // TODO: Disable Controls when game is lost!
     // TODO implement knockback
@@ -58,7 +59,10 @@ public class Better_Worm_Movement : MonoBehaviour
         gameState = FindObjectOfType<GameState>();
     }
 
-
+    void LateUpdate()
+        {
+            canvas.transform.position = canvas_target.transform.position;
+        }
 // The Update method is called once per frame
     void FixedUpdate()
     {
@@ -138,8 +142,8 @@ public class Better_Worm_Movement : MonoBehaviour
 
         // Use Rigidbody2D to move the worm while considering physics and collisions
         Vector3 newPosition = transform.position +
-                              new Vector3(movementDirection.x * moveSpeed * speedScale * Time.deltaTime,
-                                  movementDirection.y * moveSpeed * speedScale * Time.deltaTime, 0);
+                              new Vector3(movementDirection.x * moveSpeed * speedScale * Time.fixedDeltaTime,
+                                  movementDirection.y * moveSpeed * speedScale * Time.fixedDeltaTime, 0);
         if (IsWithinPerimeter(newPosition))
         {
             wormRigidbody.velocity = new Vector2(movementDirection.x * moveSpeed * speedScale,
@@ -161,7 +165,7 @@ public class Better_Worm_Movement : MonoBehaviour
             targetRotation = Quaternion.Euler(0, 0, targetAngle);
         }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
     }
 
 // Draw a wire cube in the Scene view for debugging purposes
@@ -236,7 +240,7 @@ public class Better_Worm_Movement : MonoBehaviour
         // Smoothly move the worm_end from startPosition to targetPosition over the specified duration
         while (elapsedTime < duration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.fixedDeltaTime;
             wormEnd.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
             yield return null;
         }
@@ -264,7 +268,7 @@ public class Better_Worm_Movement : MonoBehaviour
         // Decrease the remaining duration
         while (remainingStayFixedDuration > 0f)
         {
-            remainingStayFixedDuration -= Time.deltaTime;
+            remainingStayFixedDuration -= Time.fixedDeltaTime;
             yield return null;
         }
 
@@ -285,7 +289,7 @@ public class Better_Worm_Movement : MonoBehaviour
         remainingStayFixedDuration = stayFixedDuration; // Set the remaining duration to the initial value
         while (remainingStayFixedDuration > 0f)
         {
-            remainingStayFixedDuration -= Time.deltaTime; // Decrease the remaining duration
+            remainingStayFixedDuration -= Time.fixedDeltaTime; // Decrease the remaining duration
 
             // Add a small delay before checking if worm_end is not colliding with the tilemap anymore
             //yield return new WaitForSeconds(1f);
