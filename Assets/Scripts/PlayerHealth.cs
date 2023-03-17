@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     public bool knockBackAble;
 
     private GameState _gameState;
+    public float damageFlashTimer;
+    public float damageFlashSpeed;
 
     private void Awake()
     {
@@ -44,6 +46,10 @@ public class PlayerHealth : MonoBehaviour
         {
             _gameState.playerState = GameState.PlayerState.Lost;
         }
+
+        damageFlashTimer = damageFlashTimer - damageFlashSpeed;
+        damageFlashTimer = Math.Clamp(damageFlashTimer, 0, 1);
+        
     }
 
     private void LateUpdate()
@@ -87,6 +93,7 @@ public class PlayerHealth : MonoBehaviour
 
         healthCurrent -= amount;
         healthCurrent = Math.Max(healthCurrent, 0);
+        damageFlashTimer = 1.0f;
 
         if (IsDead())
         {

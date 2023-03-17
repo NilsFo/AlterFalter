@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81cd2edb4fd47c241bf90ca48b3d215f
+guid: d4ea67e870fbffb41b9b1e9949809058
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stein_0
+      name: 4x_Gras_niedrig_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,8 +131,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2efc2d70c87c0204daff25b53e7fba97
-      internalID: -1239958316
+      spriteID: 9dc1e4e4843151c4db7adbcec9c79bdc
+      internalID: 1811947992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4x_Gras_niedrig_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 753c527a576695e47a77aeea7ef7d5d3
+      internalID: 1282977610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4x_Gras_niedrig_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7607d8292e7d434d99a060e3eb232d0
+      internalID: -1912908103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4x_Gras_niedrig_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61ba20071740ac4881c194220707649
+      internalID: -1304840130
       vertices: []
       indices: 
       edges: []
@@ -148,7 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Stein_0: -1239958316
+      4x_Gras_niedrig_0: 1811947992
+      4x_Gras_niedrig_1: 1282977610
+      4x_Gras_niedrig_2: -1912908103
+      4x_Gras_niedrig_3: -1304840130
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

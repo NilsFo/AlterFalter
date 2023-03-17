@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81cd2edb4fd47c241bf90ca48b3d215f
+guid: b7c9fcb578ac96e4d98aefef0c81e024
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stein_0
+      name: 4x_Gras_hoch_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,8 +131,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2efc2d70c87c0204daff25b53e7fba97
-      internalID: -1239958316
+      spriteID: 5a80944fce2fcd94297f1bd87239b1c6
+      internalID: 1743345880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4x_Gras_hoch_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bd2e63a09de6f4d8b57a95d28d4f83
+      internalID: -1433101586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4x_Gras_hoch_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4c748bf1b400240b6f54048e04788b
+      internalID: 795606189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4x_Gras_hoch_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8bbdcb6117bc074b9938c861db868ee
+      internalID: -457095123
       vertices: []
       indices: 
       edges: []
@@ -148,7 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Stein_0: -1239958316
+      4x_Gras_hoch_0: 1743345880
+      4x_Gras_hoch_1: -1433101586
+      4x_Gras_hoch_2: 795606189
+      4x_Gras_hoch_3: -457095123
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -7,6 +7,7 @@ public class AudioSourceAutoVolume : MonoBehaviour
 {
     private MusicManager _musicManager;
     public AudioSource myAudioSource;
+    public float audioSourceMult = 1.0f;
 
     private void Awake()
     {
@@ -16,6 +17,6 @@ public class AudioSourceAutoVolume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myAudioSource.volume = _musicManager.GetVolume();
+        myAudioSource.volume = _musicManager.GetVolume()*audioSourceMult;
     }
 }

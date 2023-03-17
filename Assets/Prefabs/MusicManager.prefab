@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c5aa2ed63cb274da3a3d89460f89ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temporalAudioPlayerPrefab: {fileID: 4729486878884253044, guid: 6ca211481f4565742a4de1442a057d55, type: 3}
   songIntro: {fileID: 932810161793231709}
   songLoop: {fileID: 546799420687276374}
   stingerWin: {fileID: 2196914384342906112}
@@ -194,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAudioSource: {fileID: 546799420687276374}
+  audioSourceMult: 0.5
 --- !u!1 &4329037176150823263
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAudioSource: {fileID: 932810161793231709}
+  audioSourceMult: 0.5
 --- !u!1 &5419815510927360185
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAudioSource: {fileID: 2196914384342906112}
+  audioSourceMult: 0.5
 --- !u!1 &6083025872886172212
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,3 +624,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAudioSource: {fileID: 3477896163390054836}
+  audioSourceMult: 0.5

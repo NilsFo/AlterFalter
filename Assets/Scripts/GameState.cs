@@ -55,6 +55,9 @@ public class GameState : MonoBehaviour
 
     [Header("Butterfly Objective")] public float butterflyFlowerMaxDistance;
 
+    [Header("Damage")] public AnimationCurve damageFlash;
+    public Gradient damageGradient;
+
     [Header("Callbacks")] public UnityEvent evolveStateChange;
     public UnityEvent gameStateChange;
 
@@ -210,7 +213,7 @@ public class GameState : MonoBehaviour
 
     private void OnLoose()
     {
-        Invoke(nameof(FadeOut), 2);
+        FadeOut();
         Invoke(nameof(RestartLevel), 4);
         _musicManager.PlayStringerLoose();
     }

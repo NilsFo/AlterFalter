@@ -34,7 +34,7 @@ public class ObjectiveBar : MonoBehaviour
         switch (_gameState.evolveState)
         {
             case GameState.EvolveState.Butterfly:
-                textfield.text = "Finde Blume!";
+                textfield.text = "Find Flower!";
                 float maxDist = _gameState.butterflyFlowerMaxDistance;
                 p = GetPercentage(_gameState.PlayerDistanceToFlower(), _gameState.butterflyFlowerMaxDistance);
                 p = 1.0f - p;

@@ -7,6 +7,7 @@ public class Spike : MonoBehaviour
 {
     public float knockBackStrength;
     public int damageStrength = 1;
+    public bool allowArsch=false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
