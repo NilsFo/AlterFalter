@@ -53,6 +53,8 @@ public class Better_Worm_Movement : MonoBehaviour
         wormEndCollider = wormEnd.GetComponent<Collider2D>(); // Get the Collider2D component of the worm_end
         wormEndFixedJoint = wormEnd.AddComponent<FixedJoint2D>(); //Add a FixedJoint2D component to the worm_end
         wormEndFixedJoint.enabled = false; // Disable the FixedJoint2D component initially
+        _gameState = FindObjectOfType<GameState>();
+
     }
 
 
@@ -79,6 +81,7 @@ public class Better_Worm_Movement : MonoBehaviour
         // or the worm is touching a wall, and then moves the worm end to the worm
 
         // If the right mouse button is clicked, check if snapping is allowed and move the worm_end to the worm
+
     if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             if (Time.time - lastSnapTime >= snapCooldown && (IsTouchingTilemap() ||
