@@ -21,6 +21,7 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     public float accelerationSpriteRotationSpeed = 1.0f;
     public float velocitySpriteRotationMult = 1.0f;
     public float uprightAlignmentRotationSpeed = 1.0f;
+    public GameObject wormPoof;
 
     private Rigidbody2D _myRigidBody;
     private Vector2 _lastFramePosition;
@@ -37,6 +38,11 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     private void Start()
     {
         _velocity = new Vector2();
+
+        var poof = Instantiate(wormPoof);
+        var pos = transform.position;
+        pos.z = transform.position.z - 1;
+        poof.transform.position = pos;
     }
 
     private void Update()
@@ -163,7 +169,6 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
 
     public float GetVelocity()
     {
-        return _velocity.x;
+        return _ridgitbodyVelocity.x;
     }
-    
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 55770249770807879}
   - component: {fileID: 8098207387451641270}
   - component: {fileID: 3885830937801426872}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: WallSegment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: -5327004910269257732}
   myLife: {fileID: 8098207387451641270}
+  myCollider: {fileID: 3885830937801426872}
 --- !u!114 &8098207387451641270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08800ba766d6efb418f59cb3919e32e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aliveTime: 10
+  aliveTime: 30
   timerActive: 0
 --- !u!70 &3885830937801426872
 CapsuleCollider2D:

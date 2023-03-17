@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDirection: {x: 1, y: 0}
   speed: 10
-  damage: 2
+  damage: 1
   knockBackStrength: 0
   spiderWebPrefab: {fileID: 5815151483112270479, guid: 575cd401d824b634baf6a107df73c941, type: 3}
   rb: {fileID: 4347968681390033834}
@@ -157,3 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aliveTime: 15
+  timerActive: 1

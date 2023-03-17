@@ -39,6 +39,10 @@ public class GameState : MonoBehaviour
     private HealthBar _healthBar;
     private GameObject _player;
     private FlowerCollectible _blume;
+    private UIFadeOut _fadeOut;
+
+    [Header("Levels")] public string nextLevelName;
+    public bool winOnEvolve = false;
 
     [Header("Caterpillar Food")] public int foodCurrent;
     public int foodTarget;
@@ -66,6 +70,7 @@ public class GameState : MonoBehaviour
         _healthBar = FindObjectOfType<HealthBar>();
         _blume = FindObjectOfType<FlowerCollectible>();
         _camera = FindObjectOfType<CinemachineVirtualCamera>();
+        _fadeOut = FindObjectOfType<UIFadeOut>();
     }
 
     // Start is called before the first frame update
@@ -136,6 +141,11 @@ public class GameState : MonoBehaviour
     {
         Debug.Log("New Player state: " + playerState);
         gameStateChange.Invoke();
+
+        if (playerState == PlayerState.Win)
+        {
+            OnWin();
+        }
     }
 
     private void OnEvolveStateChange()
@@ -144,6 +154,11 @@ public class GameState : MonoBehaviour
         ResetFood();
         evolveStateChange.Invoke();
         _healthBar.OnEvolve();
+
+        if (winOnEvolve && evolveState != EvolveState.Unknown && evolveState != EvolveState.Caterpillar)
+        {
+            Win();
+        }
     }
 
     [ContextMenu("Add 1 food")]
@@ -168,13 +183,20 @@ public class GameState : MonoBehaviour
         playerState = PlayerState.Win;
     }
 
+    private void OnWin()
+    {
+        Invoke(nameof(FadeOut), 2);
+        Invoke(nameof(NextLevel), 4);
+    }
+
+    private void FadeOut()
+    {
+        _fadeOut.alphaChangeRate *= -1;
+    }
+
     public void ResetFood()
     {
         Food = 0;
-    }
-
-    private void FixedUpdate()
-    {
     }
 
     public void RegisterPlayer(GameObject newPlayer)
@@ -189,6 +211,11 @@ public class GameState : MonoBehaviour
         {
             _camera.Follow = _player.transform;
         }
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(nextLevelName);
     }
 
     public float PlayerDistanceToFlower()

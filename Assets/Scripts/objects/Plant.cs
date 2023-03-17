@@ -6,6 +6,7 @@ using UnityEngine;
 public class Plant : MonoBehaviour
 {
     private GameState _gameState;
+    public GameObject plantParticlePoofPrefab;
 
     private void Awake()
     {
@@ -18,6 +19,9 @@ public class Plant : MonoBehaviour
 
         if (playerInventory != null && _gameState.evolveState == GameState.EvolveState.Caterpillar)
         {
+            var poof = Instantiate(plantParticlePoofPrefab);
+            poof.transform.position = transform.position;
+
             playerInventory.PlantsCollected();
             gameObject.SetActive(false);
         }
