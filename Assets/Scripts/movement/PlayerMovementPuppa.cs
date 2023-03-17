@@ -125,11 +125,12 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     {
         EnemyBugAI enemyBugAI = col.gameObject.GetComponent<EnemyBugAI>();
         float velocity = _ridgitbodyVelocity.x;
+        velocity = MathF.Abs(velocity);
         if (enemyBugAI != null)
         {
             if (velocity >= attackVelocityThreshold)
             {
-                enemyBugAI.BowlAway();
+                enemyBugAI.BowlAway(_ridgitbodyVelocity.x);
             }
             else
             {
@@ -159,4 +160,10 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
         Handles.Label(position, "Vel: " + _ridgitbodyVelocity.x);
 #endif
     }
+
+    public float GetVelocity()
+    {
+        return _velocity.x;
+    }
+    
 }

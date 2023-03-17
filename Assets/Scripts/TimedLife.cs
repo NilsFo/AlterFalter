@@ -6,6 +6,7 @@ public class TimedLife : MonoBehaviour
 {
     public float aliveTime = 4.0f;
     private float _timer = 0;
+    public bool timerActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +17,13 @@ public class TimedLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _timer += Time.deltaTime;
-        if (_timer >= aliveTime)
+        if (timerActive)
         {
-            DestroySelf();
+            _timer += Time.deltaTime;
+            if (_timer >= aliveTime)
+            {
+                DestroySelf();
+            }
         }
     }
 

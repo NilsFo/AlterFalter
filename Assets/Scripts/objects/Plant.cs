@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
+    private GameState _gameState;
+
+    private void Awake()
+    {
+        _gameState = FindObjectOfType<GameState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         PlayerInventory playerInventory = col.GetComponent<PlayerInventory>();
 
-        if (playerInventory != null)
+        if (playerInventory != null && _gameState.evolveState == GameState.EvolveState.Caterpillar)
         {
             playerInventory.PlantsCollected();
             gameObject.SetActive(false);

@@ -22,6 +22,7 @@ public class EnemyBugAI : MonoBehaviour
 
     [Header("Data")] public Animator myAnimator;
     public Rigidbody2D rb;
+    public GameObject bowlPrefab;
 
     private void Awake()
     {
@@ -76,8 +77,24 @@ public class EnemyBugAI : MonoBehaviour
         }
     }
 
-    public void BowlAway()
+    public void BowlAway(float impactVelocity)
     {
+        Vector3 pos = transform.position;
+        pos.z = -9;
+        
+        var bowl = Instantiate(bowlPrefab, pos, Quaternion.Euler(Vector3.up));
+        Vector2 vel = new Vector2();
+        vel.x = impactVelocity * 10f;
+        vel.y = Mathf.Abs(impactVelocity) * 30f;
+
+        Rigidbody2D rb = bowl.GetComponent<Rigidbody2D>();
+        SpriteRenderer sprite = bowl.GetComponent<SpriteRenderer>();
+        rb.AddForce(vel);
+        if (!walkLeft)
+        {
+            sprite.flipX = true;
+        }
+
         Destroy(gameObject);
     }
 

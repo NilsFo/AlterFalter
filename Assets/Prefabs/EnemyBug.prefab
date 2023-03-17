@@ -273,6 +273,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   myAnimator: {fileID: 4676039239987015548}
   rb: {fileID: 764492658516386807}
+  bowlPrefab: {fileID: 6756847960244208622, guid: d6ac54fb8b90d1f4f813e30832edf688, type: 3}
 --- !u!1 &8830990842662702322
 GameObject:
   m_ObjectHideFlags: 0
