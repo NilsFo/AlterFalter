@@ -33,7 +33,7 @@ public class Better_Worm_Movement : MonoBehaviour
     private float remainingStayFixedDuration; // Remaining duration for which the worm end stays fixed
     public GameObject wormEnd; // The worm_end game object
     private FixedJoint2D wormEndFixedJoint; // Reference to the worm_end's FixedJoint2D component
-    private GameState _gameState;
+    public GameState gameState;
 
     // Start method is called when the script is first enabled
     // TODO: Disable Controls when game is lost!
@@ -54,7 +54,7 @@ public class Better_Worm_Movement : MonoBehaviour
         wormEndCollider = wormEnd.GetComponent<Collider2D>(); // Get the Collider2D component of the worm_end
         wormEndFixedJoint = wormEnd.AddComponent<FixedJoint2D>(); //Add a FixedJoint2D component to the worm_end
         wormEndFixedJoint.enabled = false; // Disable the FixedJoint2D component initially
-        _gameState = FindObjectOfType<GameState>();
+        gameState = FindObjectOfType<GameState>();
 
     }
 
@@ -66,6 +66,8 @@ public class Better_Worm_Movement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
+    if (gameState.playerState != GameState.PlayerState.Lost)
+    {
         // If snapping is not in progress, perform movement actions
         if (!isSnappingInProgress)
         {
@@ -105,6 +107,7 @@ public class Better_Worm_Movement : MonoBehaviour
                 wormRigidbody.MovePosition(newPosition);
             }
         }
+    }
     }
 
     void FollowMouse()
