@@ -704,9 +704,8 @@ MonoBehaviour:
     m_Bits: 1
   boxSize: {x: 0, y: 0, z: 0}
   maxDistanceFromWormEnd: 2.5
-  toggleMouseControlKey: 116
   stayFixedDuration: 5
-  snapCooldown: 1
+  snapCooldown: 0.5
   snapDuration: 0.15
   wormEndRigidbody: {fileID: 7916254420266445599}
   wormEnd: {fileID: 7916254420266445587}

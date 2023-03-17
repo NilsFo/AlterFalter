@@ -15,7 +15,6 @@ public class Better_Worm_Movement : MonoBehaviour
     public LayerMask tilemapLayer; // The layer on which the tilemap is located
     public Vector3 boxSize; // The size of the worm's box collider
     public float maxDistanceFromWormEnd = 3f; // The maximum distance the worm end can be from the worm
-    public KeyCode toggleMouseControlKey = KeyCode.T; // The key to toggle mouse control
     public float stayFixedDuration = 5f; // Duration for which the worm end stays fixed
     private float unfixedTime; // Time when the worm end becomes unfixed
     private Rigidbody2D wormRigidbody; // Reference to the worm's Rigidbody2D component
@@ -27,7 +26,7 @@ public class Better_Worm_Movement : MonoBehaviour
     private float horizontal; // Horizontal input axis value
     private float vertical; // Vertical input axis value
     private Quaternion targetRotation; // The target rotation of the worm
-    private bool mouseControl = false; // Boolean to check if the mouse control is enabled
+    private bool mouseControl = true; // Boolean to check if the mouse control is enabled
     public Rigidbody2D wormEndRigidbody; // Reference to the worm_end's Rigidbody2D component
     private WormEndController wormEndController; // Reference to the worm_end's WormEndController script
     private bool isSnappingInProgress; // Boolean to check if snapping is in progress
@@ -64,27 +63,13 @@ public class Better_Worm_Movement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        // Toggle mouse control when the specified key is pressed
-        if (Input.GetKeyDown(toggleMouseControlKey))
-        {
-            mouseControl = !mouseControl;
-        }
-
         // If snapping is not in progress, perform movement actions
         if (!isSnappingInProgress)
         {
-            // If mouse control is enabled, follow the mouse
-            if (mouseControl)
-            {
-                FollowMouse();
-            }
-            else
-            {
-                // If mouse control is disabled, perform different types of movement based on the input
-                MoveLeftRight();
-                MoveUpDown();
-                MoveOnCeiling();
-            }
+
+            FollowMouse();
+        
+
 
             // Rotate the worm
             RotateWorm();
@@ -94,7 +79,7 @@ public class Better_Worm_Movement : MonoBehaviour
         // or the worm is touching a wall, and then moves the worm end to the worm
 
         // If the right mouse button is clicked, check if snapping is allowed and move the worm_end to the worm
-        if (Input.GetMouseButtonDown(1))
+    if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             if (Time.time - lastSnapTime >= snapCooldown && (IsTouchingTilemap() ||
                                                              (remainingStayFixedDuration > 0 &&
@@ -114,67 +99,6 @@ public class Better_Worm_Movement : MonoBehaviour
                 Vector3 direction = (wormEnd.transform.position - transform.position).normalized;
                 Vector3 newPosition = transform.position + direction * (distance - maxDistanceFromWormEnd);
                 wormRigidbody.MovePosition(newPosition);
-            }
-        }
-    }
-
-// Move the worm horizontally based on the input axis
-    void MoveLeftRight()
-    {
-        // Calculate the new position of the worm based on its current position, horizontal input, and move speed
-        Vector3 newPosition = transform.position + new Vector3(horizontal * moveSpeed * Time.deltaTime, 0, 0);
-        // If the new position is within the perimeter, update the worm's velocity accordingly
-        if (IsWithinPerimeter(newPosition))
-        {
-            wormRigidbody.velocity = new Vector2(horizontal * moveSpeed, wormRigidbody.velocity.y);
-        }
-    }
-
-// Move the worm vertically based on the input axis and its position relative to the tilemap
-    void MoveUpDown()
-    {
-        if (Mathf.Abs(vertical) > 0.01f) // Check if there is any vertical input
-        {
-            // Perform BoxCasts to check if the worm is touching any walls or the ground
-            RaycastHit2D hitLeft = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.left, 0, tilemapLayer);
-            RaycastHit2D hitRight = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.right, 0, tilemapLayer);
-            RaycastHit2D hitDown = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down, 0, tilemapLayer);
-
-            // If the worm is touching either left or right walls, allow it to climb vertically
-            if (hitLeft.collider != null || hitRight.collider != null)
-            {
-                Vector3 newPosition =
-                    transform.position + new Vector3(0, vertical * wallClimbSpeed * Time.deltaTime, 0);
-                if (IsWithinPerimeter(newPosition))
-                {
-                    wormRigidbody.velocity = new Vector2(wormRigidbody.velocity.x, vertical * wallClimbSpeed);
-                }
-            }
-            // If the worm is in a corner with a tilemap below and either left or right of it, allow it to move up
-            else if (hitDown.collider != null && (hitLeft.collider != null || hitRight.collider != null))
-            {
-                Vector3 newPosition = transform.position +
-                                      new Vector3(0, Mathf.Max(vertical, 0) * moveSpeed * Time.deltaTime, 0);
-                if (IsWithinPerimeter(newPosition))
-                {
-                    wormRigidbody.velocity = new Vector2(wormRigidbody.velocity.x, Mathf.Max(vertical, 0) * moveSpeed);
-                }
-            }
-        }
-    }
-
-// Move the worm horizontally when it's on the ceiling
-    void MoveOnCeiling()
-    {
-        // Perform a BoxCast to check if the worm is touching the ceiling
-        RaycastHit2D hitUp = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.up, 0, tilemapLayer);
-        // If the worm is touching the ceiling and there is horizontal input, allow it to move horizontally
-        if (hitUp.collider != null && Mathf.Abs(horizontal) > 0.01f)
-        {
-            Vector3 newPosition = transform.position + new Vector3(horizontal * moveSpeed * Time.deltaTime, 0, 0);
-            if (IsWithinPerimeter(newPosition))
-            {
-                wormRigidbody.velocity = new Vector2(horizontal * moveSpeed, wormRigidbody.velocity.y);
             }
         }
     }
