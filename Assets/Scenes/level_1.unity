@@ -250,7 +250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -62, y: -22}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &99009373
@@ -273,8 +273,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You control the young catterpillar. \n\nLook around with your mouse\nand\npress
-    left/right click to move."
+  m_text: "You control the young catterpillar. \nLook around with your mouse\nand\npress
+    left/right click to move.\nPress Enter to Reset a Level.\nPress Backspace to
+    return to the Main Menu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9836bf76ede9d28489243a06a671139d, type: 2}
   m_sharedMaterial: {fileID: 832488639546379081, guid: 9836bf76ede9d28489243a06a671139d, type: 2}
@@ -51151,11 +51152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 375272042476588021, guid: cee0769859aec4b4497cbdebb8e7d52c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1211505
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 375272042476588021, guid: cee0769859aec4b4497cbdebb8e7d52c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.114059985
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 375272043649883933, guid: cee0769859aec4b4497cbdebb8e7d52c, type: 3}
       propertyPath: m_IsActive

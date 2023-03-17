@@ -66,9 +66,6 @@ public class Better_Worm_Movement : MonoBehaviour
 // The Update method is called once per frame
     void FixedUpdate()
     {
-        // Get the horizontal and vertical input axis values
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
 
         if (gameState.playerState != GameState.PlayerState.Lost)
         {
@@ -87,7 +84,8 @@ public class Better_Worm_Movement : MonoBehaviour
 
             // If the right mouse button is clicked, check if snapping is allowed and move the worm_end to the worm
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            //if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton())
             {
                 if (Time.time - lastSnapTime >= snapCooldown && (IsTouchingTilemap() ||
                                                                  (remainingStayFixedDuration > 0 &&
