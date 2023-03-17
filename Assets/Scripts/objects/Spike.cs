@@ -7,7 +7,7 @@ public class Spike : MonoBehaviour
 {
     public float knockBackStrength;
     public int damageStrength = 1;
-    public bool allowArsch=false;
+    public bool allowArsch = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,7 +39,13 @@ public class Spike : MonoBehaviour
         if (segmentHealthHealth != null)
         {
             playerHealth = segmentHealthHealth.playerHealth;
-            if (segmentHealthHealth.damageAble)
+            bool dmgAble = segmentHealthHealth.damageAble;
+            if (allowArsch)
+            {
+                dmgAble = true;
+            }
+
+            if (dmgAble)
             {
                 return playerHealth;
             }

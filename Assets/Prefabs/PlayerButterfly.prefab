@@ -188,6 +188,7 @@ MonoBehaviour:
   movementSpeed: 45
   myRigidBody: {fileID: 5004622967125329545}
   pupaPoof: {fileID: 3734505253938437954, guid: 69f6625507e10494a8b54fd27eddaa92, type: 3}
+  mySpriteRenderer: {fileID: 8144776802410198468}
 --- !u!114 &7620352256865550793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,3 +205,8 @@ MonoBehaviour:
   healthMax: 10
   invincible: 0
   knockBackAble: 1
+--- !u!212 &8144776802410198468 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4336825747346763982, guid: 8f5a568fc10b14f49a5252fd4c68a4ac, type: 3}
+  m_PrefabInstance: {fileID: 5559569853701899530}
+  m_PrefabAsset: {fileID: 0}

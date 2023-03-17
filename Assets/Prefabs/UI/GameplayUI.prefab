@@ -1048,6 +1048,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectiveBar
       objectReference: {fileID: 0}
+    - target: {fileID: 5828059972821610953, guid: 16b38f2ddd0832440ae637a762a60ead, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6537224292519937654, guid: 16b38f2ddd0832440ae637a762a60ead, type: 3}
       propertyPath: m_Value
       value: 1

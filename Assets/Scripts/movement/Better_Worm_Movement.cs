@@ -1,5 +1,6 @@
 // Import the necessary namespaces
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,59 +56,60 @@ public class Better_Worm_Movement : MonoBehaviour
         wormEndFixedJoint = wormEnd.AddComponent<FixedJoint2D>(); //Add a FixedJoint2D component to the worm_end
         wormEndFixedJoint.enabled = false; // Disable the FixedJoint2D component initially
         gameState = FindObjectOfType<GameState>();
-
     }
 
 
 // The Update method is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Get the horizontal and vertical input axis values
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-    if (gameState.playerState != GameState.PlayerState.Lost)
-    {
-        // If snapping is not in progress, perform movement actions
-        if (!isSnappingInProgress)
+        if (gameState.playerState != GameState.PlayerState.Lost)
         {
-
-            FollowMouse();
-        
-
-
-            // Rotate the worm
-            RotateWorm();
-        }
-
-        // The commented out code checks if the distance between the worm and worm_end is equal to or greater than maxDistanceFromWormEnd
-        // or the worm is touching a wall, and then moves the worm end to the worm
-
-        // If the right mouse button is clicked, check if snapping is allowed and move the worm_end to the worm
-
-    if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-        {
-            if (Time.time - lastSnapTime >= snapCooldown && (IsTouchingTilemap() ||
-                                                             (remainingStayFixedDuration > 0 &&
-                                                              wormEndController.isColliding)))
+            // If snapping is not in progress, perform movement actions
+            if (!isSnappingInProgress)
             {
-                MoveWormEndToWorm();
+                FollowMouse();
+
+
+                // Rotate the worm
+                RotateWorm();
+            }
+
+            // The commented out code checks if the distance between the worm and worm_end is equal to or greater than maxDistanceFromWormEnd
+            // or the worm is touching a wall, and then moves the worm end to the worm
+
+            // If the right mouse button is clicked, check if snapping is allowed and move the worm_end to the worm
+
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            {
+                if (Time.time - lastSnapTime >= snapCooldown && (IsTouchingTilemap() ||
+                                                                 (remainingStayFixedDuration > 0 &&
+                                                                  wormEndController.isColliding)))
+                {
+                    MoveWormEndToWorm();
+                }
+                else
+                {
+                    print("MISSED TIMING");
+                }
+            }
+
+            // Drag the worm towards the worm_end if it's outside the perimeter, and if snapping is not in progress
+            if (!isSnappingInProgress)
+            {
+                float distance = Vector3.Distance(transform.position, wormEnd.transform.position);
+                if (distance > maxDistanceFromWormEnd)
+                {
+                    // Calculate the direction and new position for the worm to be dragged towards the worm_end
+                    Vector3 direction = (wormEnd.transform.position - transform.position).normalized;
+                    Vector3 newPosition = transform.position + direction * (distance - maxDistanceFromWormEnd);
+                    wormRigidbody.MovePosition(newPosition);
+                }
             }
         }
-
-        // Drag the worm towards the worm_end if it's outside the perimeter, and if snapping is not in progress
-        if (!isSnappingInProgress)
-        {
-            float distance = Vector3.Distance(transform.position, wormEnd.transform.position);
-            if (distance > maxDistanceFromWormEnd)
-            {
-                // Calculate the direction and new position for the worm to be dragged towards the worm_end
-                Vector3 direction = (wormEnd.transform.position - transform.position).normalized;
-                Vector3 newPosition = transform.position + direction * (distance - maxDistanceFromWormEnd);
-                wormRigidbody.MovePosition(newPosition);
-            }
-        }
-    }
     }
 
     void FollowMouse()

@@ -55,8 +55,11 @@ public class GameState : MonoBehaviour
 
     [Header("Butterfly Objective")] public float butterflyFlowerMaxDistance;
 
-    [Header("Damage")] public AnimationCurve damageFlash;
+    [Header("Damage")] public AnimationCurve damageFlashCurve;
     public Gradient damageGradient;
+    public Color currentDmgTint;
+    public float damageFlashTimer;
+    public float damageFlashSpeed;
 
     [Header("Callbacks")] public UnityEvent evolveStateChange;
     public UnityEvent gameStateChange;
@@ -140,6 +143,17 @@ public class GameState : MonoBehaviour
         {
             RestartLevel();
         }
+
+        // Dmg flash
+        damageFlashTimer = damageFlashTimer - damageFlashSpeed * Time.deltaTime;
+        if (playerState == PlayerState.Lost)
+        {
+            damageFlashTimer = 1.0f;
+        }
+
+        damageFlashTimer = Math.Clamp(damageFlashTimer, 0, 1);
+        float flashVar = damageFlashCurve.Evaluate(damageFlashTimer) * 100f;
+        currentDmgTint = damageGradient.Evaluate(flashVar);
     }
 
     private void RestartLevel()
