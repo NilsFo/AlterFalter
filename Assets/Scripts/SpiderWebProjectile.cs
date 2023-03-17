@@ -20,10 +20,15 @@ public class SpiderWebProjectile : MonoBehaviour
     public Rigidbody2D rb;
     private GameState _gameObject;
     private TilemapCollider2D _tilemapCollider2D;
-    [SerializeField] private Tilemap _tilemap;
+    private Tilemap _tilemap;
+
+    private MusicManager _musicManager;
+    public AudioClip createClip;
+    public AudioClip deathClip;
 
     private void Awake()
     {
+        _musicManager = FindObjectOfType<MusicManager>();
         _gameState = FindObjectOfType<GameState>();
         _gameObject = FindObjectOfType<GameState>();
         _tilemapCollider2D = FindObjectOfType<TilemapCollider2D>();
@@ -31,14 +36,9 @@ public class SpiderWebProjectile : MonoBehaviour
         _tilemap = _tilemapCollider2D.gameObject.GetComponent<Tilemap>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        _musicManager.CreateAudioClip(createClip);
     }
 
     private void FixedUpdate()
@@ -74,6 +74,7 @@ public class SpiderWebProjectile : MonoBehaviour
     [ContextMenu("PlaceSpiderWeb")]
     public void PlaceSpiderWeb()
     {
+        _musicManager.CreateAudioClip(deathClip);
         Vector3Int worldPos = _tilemap.WorldToCell(transform.position);
         Vector3 tileCenter = _tilemap.GetCellCenterLocal(worldPos);
 
@@ -117,4 +118,6 @@ public class SpiderWebProjectile : MonoBehaviour
 
         return null;
     }
+
+    
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    public GameObject temporalAudioPlayerPrefab;
     public static float userDesiredVolume = 0.5f;
     public readonly float GLOBAL_VOLUME_MULT = 0.5f;
     private bool playingIntro = false;
@@ -81,5 +82,13 @@ public class MusicManager : MonoBehaviour
     public float GetVolume()
     {
         return userDesiredVolume * GLOBAL_VOLUME_MULT;
+    }
+
+    public void CreateAudioClip(AudioClip audioClip)
+    {
+        var adp = Instantiate(temporalAudioPlayerPrefab,transform);
+        AudioSource source = adp.GetComponent<AudioSource>();
+        source.clip = audioClip;
+        source.Play();
     }
 }

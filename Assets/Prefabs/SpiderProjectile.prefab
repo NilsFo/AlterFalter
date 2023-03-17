@@ -144,7 +144,8 @@ MonoBehaviour:
   knockBackStrength: 0
   spiderWebPrefab: {fileID: 5815151483112270479, guid: 575cd401d824b634baf6a107df73c941, type: 3}
   rb: {fileID: 4347968681390033834}
-  _tilemap: {fileID: 0}
+  createClip: {fileID: 8300000, guid: 8ac9b3421ee60324781ad002df4d69c0, type: 3}
+  deathClip: {fileID: 8300000, guid: de9e58e795bed3a479b7a129491611a1, type: 3}
 --- !u!114 &3520293197710444885
 MonoBehaviour:
   m_ObjectHideFlags: 0
