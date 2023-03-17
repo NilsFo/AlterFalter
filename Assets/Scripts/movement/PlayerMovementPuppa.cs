@@ -21,6 +21,7 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     public float accelerationSpriteRotationSpeed = 1.0f;
     public float velocitySpriteRotationMult = 1.0f;
     public float uprightAlignmentRotationSpeed = 1.0f;
+    public GameObject wormPoof;
 
     private Rigidbody2D _myRigidBody;
     private Vector2 _lastFramePosition;
@@ -37,6 +38,11 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     private void Start()
     {
         _velocity = new Vector2();
+
+        var poof = Instantiate(wormPoof);
+        var pos = transform.position;
+        pos.z = transform.position.z - 1;
+        poof.transform.position = pos;
     }
 
     private void Update()
@@ -125,11 +131,12 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
     {
         EnemyBugAI enemyBugAI = col.gameObject.GetComponent<EnemyBugAI>();
         float velocity = _ridgitbodyVelocity.x;
+        velocity = MathF.Abs(velocity);
         if (enemyBugAI != null)
         {
             if (velocity >= attackVelocityThreshold)
             {
-                enemyBugAI.BowlAway();
+                enemyBugAI.BowlAway(_ridgitbodyVelocity.x);
             }
             else
             {
@@ -158,5 +165,10 @@ public class PlayerMovementPuppa : MonoBehaviour, IPlayerMovementBase
         // Handles.DrawWireDisc(wireOrigin, Vector3.forward, 1);
         Handles.Label(position, "Vel: " + _ridgitbodyVelocity.x);
 #endif
+    }
+
+    public float GetVelocity()
+    {
+        return _ridgitbodyVelocity.x;
     }
 }

@@ -272,6 +272,7 @@ MonoBehaviour:
   accelerationSpriteRotationSpeed: 1
   velocitySpriteRotationMult: 0.85
   uprightAlignmentRotationSpeed: 100
+  wormPoof: {fileID: 1289559439159265230, guid: ca27b93881c152143a3b3ea06887a9fb, type: 3}
 --- !u!114 &3350144696113737228
 MonoBehaviour:
   m_ObjectHideFlags: 0

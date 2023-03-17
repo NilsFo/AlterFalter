@@ -6,6 +6,7 @@ using UnityEngine;
 public class FlowerCollectible : MonoBehaviour
 {
     private GameState _gameState;
+    public GameObject flowerPoof;
 
     private void Awake()
     {
@@ -33,7 +34,12 @@ public class FlowerCollectible : MonoBehaviour
             if (_gameState.evolveState == GameState.EvolveState.Butterfly)
             {
                 gameObject.SetActive(false);
-                _gameState.playerState = GameState.PlayerState.Win;
+                _gameState.Win();
+                
+                var poof = Instantiate(flowerPoof);
+                var pos = transform.position;
+                pos.z = transform.position.z - 1;
+                poof.transform.position = pos;
             }
         }
     }

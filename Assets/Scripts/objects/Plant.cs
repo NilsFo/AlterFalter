@@ -1,15 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
+    private GameState _gameState;
+    public GameObject plantParticlePoofPrefab;
+
+    private void Awake()
+    {
+        _gameState = FindObjectOfType<GameState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         PlayerInventory playerInventory = col.GetComponent<PlayerInventory>();
 
-        if (playerInventory != null)
+        if (playerInventory != null && _gameState.evolveState == GameState.EvolveState.Caterpillar)
         {
+            var poof = Instantiate(plantParticlePoofPrefab);
+            poof.transform.position = transform.position;
+
             playerInventory.PlantsCollected();
             gameObject.SetActive(false);
         }
