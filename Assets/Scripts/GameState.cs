@@ -80,6 +80,8 @@ public class GameState : MonoBehaviour
         _camera = FindObjectOfType<CinemachineVirtualCamera>();
         _fadeOut = FindObjectOfType<UIFadeOut>();
         _musicManager = FindObjectOfType<MusicManager>();
+
+        Application.targetFrameRate = 60;
     }
 
     // Start is called before the first frame update
